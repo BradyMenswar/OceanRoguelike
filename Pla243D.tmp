@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://d2uli4nrvwudr"]
+
+[ext_resource type="Script" path="res://PlayerMovement.gd" id="1_nbnr1"]
+[ext_resource type="Texture2D" uid="uid://bwito8agnn2dy" path="res://Ship 1.png" id="2_yfirp"]
+[ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="3_qykus"]
+[ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="4_dyieo"]
+[ext_resource type="PackedScene" uid="uid://dq2ek1lpwiqgw" path="res://energy_component.tscn" id="5_lt3hq"]
+[ext_resource type="Texture2D" uid="uid://w5d3ox2w4874" path="res://directional_cone_gradient.png" id="6_wmmaf"]
+[ext_resource type="Script" path="res://UIComponent.gd" id="7_4lo0u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1l4ys"]
+radius = 21.2132
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bqgty"]
+radius = 23.0
+
+[sub_resource type="Gradient" id="Gradient_s2o42"]
+offsets = PackedFloat32Array(0, 0.253472, 0.454861, 0.704861, 0.822917, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.433915, 0.433915, 0.433915, 1, 0.264574, 0.264574, 0.264574, 1, 0.0808101, 0.0808101, 0.0808101, 1, 0.0368103, 0.0368103, 0.0368103, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0khvr"]
+gradient = SubResource("Gradient_s2o42")
+width = 500
+height = 500
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.923077, 0.217949)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("energy_component")]
+position = Vector2(244, 183)
+motion_mode = 1
+script = ExtResource("1_nbnr1")
+flashlight_intensity = 0.25
+flashlight_cost = 0.5
+base_cost = 0.2
+energy_component = NodePath("EnergyComponent")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 29.0
+offset_top = 21.0
+offset_right = 82.0
+offset_bottom = 44.0
+text = "Energy"
+
+[node name="EnergyBarUI" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 29.0
+offset_top = 50.0
+offset_right = 284.0
+offset_bottom = 77.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_1l4ys")
+
+[node name="Ship Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_yfirp")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_qykus")]
+
+[node name="EnergyComponent" parent="." instance=ExtResource("5_lt3hq")]
+MAX_ENERGY = 100.0
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("4_dyieo")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_bqgty")
+debug_color = Color(0.321569, 0.623529, 0, 0.419608)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.75, 1.75)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_0khvr")
+
+[node name="Flashlight" type="PointLight2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(7.31299e-07, 7.62939e-06)
+rotation = -1.57079
+scale = Vector2(1.02202, 0.654889)
+energy = 0.0
+texture = ExtResource("6_wmmaf")
+
+[node name="UIComponent" type="Node2D" parent="." node_paths=PackedStringArray("energy_component")]
+script = ExtResource("7_4lo0u")
+energy_component = NodePath("../EnergyComponent")

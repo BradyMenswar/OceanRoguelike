@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci0vyxgta78q8"]
+
+[ext_resource type="Texture2D" uid="uid://bqvgis3dvyedj" path="res://icon.svg" id="1_fvk2i"]
+[ext_resource type="Script" path="res://charge_station.gd" id="1_i0g1n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue0i6"]
+size = Vector2(140.35, 135.865)
+
+[sub_resource type="Gradient" id="Gradient_aj3yo"]
+offsets = PackedFloat32Array(0, 0.0590278, 0.204861, 0.322917, 0.413194, 0.534722, 0.708333, 0.930556)
+colors = PackedColorArray(1, 1, 1, 1, 0.774822, 0.774822, 0.774822, 1, 0.597409, 0.597409, 0.597409, 1, 0.539896, 0.539896, 0.539896, 1, 0.473534, 0.473534, 0.473534, 1, 0.351394, 0.351394, 0.351394, 1, 0.127737, 0.127737, 0.127737, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8gho7"]
+gradient = SubResource("Gradient_aj3yo")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.102564, 0.196581)
+
+[node name="ChargeStation" type="Area2D"]
+script = ExtResource("1_i0g1n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.38419e-07, 1.69407e-21)
+scale = Vector2(0.400001, 0.400001)
+shape = SubResource("RectangleShape2D_ue0i6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.400001, 0.400001)
+texture = ExtResource("1_fvk2i")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.25
+texture = SubResource("GradientTexture2D_8gho7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
