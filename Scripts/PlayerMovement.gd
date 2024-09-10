@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var base_speed = 300
 @export var depleted_multiplier: float
-@export var acceleration = 20
+@export var acceleration = 50
 @export_range(0, 1) var turn_speed: float
 @export var energy_component: EnergyComponent
 
