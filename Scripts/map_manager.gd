@@ -31,7 +31,7 @@ func generate_map():
 	initialize_map()
 	walk()
 	clean_inside()
-	calculate_walls()
+	#calculate_walls()
 	draw_map()
 	
 
@@ -50,7 +50,6 @@ func walk():
 			elif direction == 3:
 				if current_location.y > 0: current_location.y -= 1
 			map[current_location.x][current_location.y].state = FLOOR
-
 
 func calculate_walls():
 	for row in range(map.size()):
@@ -85,6 +84,7 @@ func clean_inside():
 						
 
 func draw_map():
+	var floor_tiles = []
 	for row in range(map.size()):
 			for col in range (map[row].size()):
 				var current_tile = map[row][col]
@@ -92,6 +92,9 @@ func draw_map():
 					#tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(4,6))
 					pass
 				elif current_tile.state == WALL:
-					tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(4,6))
+					#tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(4,6))
+					pass
 				elif current_tile.state == FLOOR:
-					tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(1,1))
+					floor_tiles.push_back(Vector2i(row,col))
+					tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(2,1))
+	tile_layer.set_cells_terrain_connect(floor_tiles, 0, 0)

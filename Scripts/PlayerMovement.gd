@@ -5,12 +5,22 @@ extends CharacterBody2D
 @export var acceleration = 50
 @export_range(0, 1) var turn_speed: float
 @export var energy_component: EnergyComponent
-
+@onready var camera: Camera2D = $Camera2D
 var current_depleted_multiplier = 1
 
 func _ready():
 	energy_component.energy_depleted.connect(_on_energy_depleted)
 	energy_component.energy_restored.connect(_on_energy_restored)
+	
+func _input(event: InputEvent) -> void:
+	if(event.is_action_pressed("change_camera")):
+		print_debug("test")
+		if(camera.is_current()):
+			camera.enabled = false
+		else:
+			camera.enabled = true
+			camera.make_current()
+			
 
 func _physics_process(_delta):
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
