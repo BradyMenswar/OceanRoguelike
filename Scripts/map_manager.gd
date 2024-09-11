@@ -5,22 +5,26 @@ const WALL = 1
 const FLOOR = 2
 
 @export var map_size: int = 100
+@export var tile_size: int = 32
 @export var walker_count: int = 10
 @export var walker_steps: int = 1000
 @export var clean_iterations: int = 5
+@onready var tile_layer = $BaseTiles
 var map = []
 
-
 func _ready() -> void:
+	tile_layer.position.x  = -tile_size * 2 * map_size / 2
+	tile_layer.position.y  = -tile_size * 2 * map_size / 2
 	seed(12345)
 	generate_map()
+	
 
 
 func initialize_map():
 	for row in range(map_size):
 		map.push_back([])
 		for col in range(map_size):
-			map[row].push_back(Tile.new(EMPTY))
+			map[row].push_back({"state": EMPTY})
 
 
 func generate_map():
@@ -85,8 +89,9 @@ func draw_map():
 			for col in range (map[row].size()):
 				var current_tile = map[row][col]
 				if current_tile.state == EMPTY:
+					#tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(4,6))
 					pass
 				elif current_tile.state == WALL:
-					pass
+					tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(4,6))
 				elif current_tile.state == FLOOR:
-					pass
+					tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(1,1))

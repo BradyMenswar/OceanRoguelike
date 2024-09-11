@@ -1,9 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctocgcgtxcg3c"]
+[gd_scene load_steps=8 format=3 uid="uid://ctocgcgtxcg3c"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_m3uec"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_w6j4u"]
 [ext_resource type="PackedScene" uid="uid://ci0vyxgta78q8" path="res://charge_station.tscn" id="3_2guv0"]
 [ext_resource type="Script" path="res://Scripts/map_manager.gd" id="4_qc4fe"]
+[ext_resource type="Texture2D" uid="uid://e8ny2px4qf8d" path="res://images.jpg" id="5_fbjnr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u807p"]
+texture = ExtResource("5_fbjnr")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+4:6/0 = 0
+4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, -16, -16, 16, -16, 16, 16)
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_le48i"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_u807p")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_m3uec")
@@ -25,13 +46,19 @@ offset_top = 50.0
 offset_right = 284.0
 offset_bottom = 77.0
 
-[node name="Area2D" parent="." instance=ExtResource("3_2guv0")]
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="MapManager" type="Node2D" parent="."]
 script = ExtResource("4_qc4fe")
+map_size = 200
+walker_count = 20
+walker_steps = 3000
+clean_iterations = 2
 
 [node name="BaseTiles" type="TileMapLayer" parent="MapManager"]
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_le48i")
+rendering_quadrant_size = 2
+
+[node name="Area2D" parent="." instance=ExtResource("3_2guv0")]
