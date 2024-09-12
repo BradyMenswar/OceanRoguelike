@@ -9,10 +9,10 @@ const WALL_BIT = "0"
 const FLOOR_BIT = "1"
 
 @export var map_size: int = 100
-@export var tile_size: int = 32
-@export var walker_count: int = 10
-@export var walker_steps: int = 1000
-@export var clean_iterations: int = 5
+@export var tile_size: int = 128
+@export var walker_count: int = 20
+@export var walker_steps: int = 1750
+@export var clean_iterations: int = 2
 
 @export var floor_atlas = Vector2i(0, 3)
 @export var wall_atlas = Vector2i(2, 1)
@@ -43,10 +43,10 @@ var neighbors_to_atlas = {
 
 
 func _ready() -> void:
-	tile_layer.position.x  = -tile_size * 2 * map_size / 2
-	tile_layer.position.y  = -tile_size * 2 * map_size / 2
-	display_layer.position.x  = (-tile_size * 2 * map_size / 2) - (tile_size / 2)
-	display_layer.position.y  = (-tile_size * 2 * map_size / 2 ) - (tile_size / 2)
+	tile_layer.position.x  = -tile_size * map_size / 2
+	tile_layer.position.y  = -tile_size * map_size / 2
+	display_layer.position.x  = (-tile_size * map_size / 2) - (tile_size / 2)
+	display_layer.position.y  = (-tile_size * map_size / 2 ) - (tile_size / 2)
 	seed(12345)
 	generate_map()
 	

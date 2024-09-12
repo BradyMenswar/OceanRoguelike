@@ -56,3 +56,4 @@ change_camera={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.498039, 0.439216, 0.541176, 1)
