@@ -57,7 +57,7 @@ shape = SubResource("CircleShape2D_bqgty")
 debug_color = Color(0.321569, 0.623529, 0, 0.419608)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.75, 1.75)
+zoom = Vector2(3, 3)
 
 [node name="LightManager" type="Node2D" parent="." node_paths=PackedStringArray("energy_component")]
 unique_name_in_owner = true
