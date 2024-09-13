@@ -8,6 +8,7 @@ const NEIGHBORS = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1
 const WALL_BIT = "0"
 const FLOOR_BIT = "1"
 
+@export var tile_scale = 0.5
 @export var map_size: int = 100
 @export var tile_size: int = 128
 @export var walker_count: int = 20
@@ -43,10 +44,14 @@ var neighbors_to_atlas = {
 
 
 func _ready() -> void:
-	tile_layer.position.x  = -tile_size * map_size / 2
-	tile_layer.position.y  = -tile_size * map_size / 2
-	display_layer.position.x  = (-tile_size * map_size / 2) - (tile_size / 2)
-	display_layer.position.y  = (-tile_size * map_size / 2 ) - (tile_size / 2)
+	tile_layer.scale.x = tile_scale
+	tile_layer.scale.y = tile_scale
+	display_layer.scale.x = tile_scale
+	display_layer.scale.y = tile_scale
+	tile_layer.position.x  = -tile_size * tile_scale * (map_size / 2)
+	tile_layer.position.y  = -tile_size * tile_scale * (map_size / 2)
+	display_layer.position.x  = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
+	display_layer.position.y  = (-tile_size * tile_scale * map_size / 2 ) - (tile_size * tile_scale / 2)
 	seed(12345)
 	generate_map()
 	
@@ -128,16 +133,16 @@ func draw_map():
 				#tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(2,5))
 				pass
 			elif current_tile.state == WALL:
-				tile_layer.set_cell(Vector2i(row, col), 0, wall_atlas)
+				tile_layer.set_cell(Vector2i(row, col), 1, wall_atlas)
 				pass
 			elif current_tile.state == FLOOR:
-				tile_layer.set_cell(Vector2i(row, col), 0, floor_atlas)
+				tile_layer.set_cell(Vector2i(row, col), 1, floor_atlas)
 				pass
 
 func set_display_tile(base_position):
 	for index in range(NEIGHBORS.size()):
 		var new_position = base_position + NEIGHBORS[index]
-		display_layer.set_cell(new_position, 0, calculate_display_tile(new_position))
+		display_layer.set_cell(new_position, 1, calculate_display_tile(new_position))
 		
 
 func calculate_display_tile(coords):

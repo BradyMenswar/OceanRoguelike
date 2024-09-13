@@ -35,10 +35,11 @@ offset_left = -18923.0
 offset_top = -16671.0
 offset_right = 24862.0
 offset_bottom = 14843.0
-color = Color(0.498039, 0.439216, 0.541176, 1)
+color = Color(0.615686, 0.682353, 0.756863, 1)
 
 [node name="MapManager" type="Node2D" parent="."]
 script = ExtResource("4_qc4fe")
+tile_size = 256
 walker_count = 5
 walker_steps = 2500
 
@@ -52,4 +53,4 @@ tile_set = ExtResource("4_erc5y")
 [node name="Area2D" parent="." instance=ExtResource("3_2guv0")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.05, 0.05)
+zoom = Vector2(0.16, 0.16)
