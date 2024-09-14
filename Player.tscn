@@ -1,16 +1,16 @@
 [gd_scene load_steps=16 format=3 uid="uid://d2uli4nrvwudr"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_nbnr1"]
-[ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://temp_character.png" id="2_i0dgi"]
-[ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="3_qykus"]
-[ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="4_dyieo"]
-[ext_resource type="PackedScene" uid="uid://dq2ek1lpwiqgw" path="res://energy_component.tscn" id="5_lt3hq"]
-[ext_resource type="Script" path="res://Scripts/LightManager.gd" id="6_up0xy"]
-[ext_resource type="Texture2D" uid="uid://w5d3ox2w4874" path="res://directional_cone_gradient.png" id="6_wmmaf"]
-[ext_resource type="Script" path="res://Scripts/Aim.gd" id="7_oi1vj"]
-[ext_resource type="Script" path="res://Scripts/attack_component.gd" id="9_4rlo8"]
-[ext_resource type="Resource" uid="uid://dfbjeavv7xry7" path="res://Weapons/auto_ar.tres" id="10_hbywe"]
-[ext_resource type="Texture2D" uid="uid://6sw1qv1bq7pe" path="res://Weapon.png" id="11_unjv6"]
+[ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_wv2iq"]
+[ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="2_fk6na"]
+[ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="3_36cds"]
+[ext_resource type="PackedScene" uid="uid://dq2ek1lpwiqgw" path="res://energy_component.tscn" id="4_glt8y"]
+[ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="5_xdc5d"]
+[ext_resource type="Script" path="res://Scripts/light_manager.gd" id="6_0uwx3"]
+[ext_resource type="Script" path="res://Scripts/aim.gd" id="7_5tehi"]
+[ext_resource type="Texture2D" uid="uid://w5d3ox2w4874" path="res://Sprites/directional_cone_gradient.png" id="8_0v0xt"]
+[ext_resource type="Script" path="res://Scripts/attack_component.gd" id="9_gxlrw"]
+[ext_resource type="Resource" uid="uid://budttpfmkjnvx" path="res://Weapons/semi_shotgun.tres" id="10_ivrg7"]
+[ext_resource type="Texture2D" uid="uid://6sw1qv1bq7pe" path="res://Sprites/Weapon.png" id="11_wt7wj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4ys"]
 radius = 40.0125
@@ -33,7 +33,7 @@ fill_from = Vector2(0.5, 0.5)
 position = Vector2(244, 183)
 collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_nbnr1")
+script = ExtResource("1_wv2iq")
 depleted_multiplier = 0.6
 turn_speed = 0.15
 energy_component = NodePath("EnergyComponent")
@@ -45,15 +45,15 @@ shape = SubResource("CircleShape2D_1l4ys")
 [node name="Ship Sprite" type="Sprite2D" parent="."]
 position = Vector2(-7, -2)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_i0dgi")
+texture = ExtResource("2_fk6na")
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_qykus")]
+[node name="HealthComponent" parent="." instance=ExtResource("3_36cds")]
 MAX_HEALTH = 10
 
-[node name="EnergyComponent" parent="." instance=ExtResource("5_lt3hq")]
+[node name="EnergyComponent" parent="." instance=ExtResource("4_glt8y")]
 MAX_ENERGY = 100.0
 
-[node name="HurtboxComponent" parent="." instance=ExtResource("4_dyieo")]
+[node name="HurtboxComponent" parent="." instance=ExtResource("5_xdc5d")]
 collision_layer = 1
 collision_mask = 1
 
@@ -72,7 +72,7 @@ editor_draw_drag_margin = true
 [node name="LightManager" type="Node2D" parent="." node_paths=PackedStringArray("energy_component")]
 unique_name_in_owner = true
 position = Vector2(-6, 0)
-script = ExtResource("6_up0xy")
+script = ExtResource("6_0uwx3")
 base_cost = 0.1
 energy_component = NodePath("../EnergyComponent")
 ship_light_base_intensity = 0.5
@@ -84,24 +84,24 @@ texture = SubResource("GradientTexture2D_0khvr")
 
 [node name="Swivel" type="Node2D" parent="."]
 position = Vector2(-1, -16)
-script = ExtResource("7_oi1vj")
+script = ExtResource("7_5tehi")
 
 [node name="Flashlight" type="PointLight2D" parent="Swivel"]
 unique_name_in_owner = true
 rotation = -1.57079
 scale = Vector2(1.02202, 0.654889)
 energy = 0.0
-texture = ExtResource("6_wmmaf")
+texture = ExtResource("8_0v0xt")
 texture_scale = 1.56
 
 [node name="AttackComponent" type="Node2D" parent="Swivel"]
-script = ExtResource("9_4rlo8")
-weapon_resource = ExtResource("10_hbywe")
+script = ExtResource("9_gxlrw")
+weapon_resource = ExtResource("10_ivrg7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Swivel/AttackComponent"]
 position = Vector2(0, -18)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("11_unjv6")
+texture = ExtResource("11_wt7wj")
 
 [node name="BarrelPlacement" type="Marker2D" parent="Swivel/AttackComponent"]
 position = Vector2(0, -46)

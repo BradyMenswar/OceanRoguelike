@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://ctocgcgtxcg3c"]
 
-[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_m3uec"]
-[ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_w6j4u"]
-[ext_resource type="PackedScene" uid="uid://ci0vyxgta78q8" path="res://charge_station.tscn" id="3_2guv0"]
-[ext_resource type="TileSet" uid="uid://bittc6rbhu1ca" path="res://TileMap.tres" id="4_erc5y"]
-[ext_resource type="Script" path="res://Scripts/map_manager.gd" id="4_qc4fe"]
-[ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://temp_character.png" id="6_6i8gq"]
-[ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="7_52en6"]
-[ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="8_uk345"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_bglc7"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_bufkk"]
+[ext_resource type="Script" path="res://Scripts/map_manager.gd" id="3_u4oks"]
+[ext_resource type="TileSet" uid="uid://bittc6rbhu1ca" path="res://temp_tileset.tres" id="4_v17b2"]
+[ext_resource type="PackedScene" uid="uid://ci0vyxgta78q8" path="res://charge_station.tscn" id="5_dvgoe"]
+[ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="6_7sct2"]
+[ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="7_lucxo"]
+[ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="8_ntlcy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f04b6"]
 radius = 40.0125
@@ -26,10 +26,10 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.102564, 0.196581)
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_m3uec")
+script = ExtResource("1_bglc7")
 
 [node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("1_w6j4u")
+script = ExtResource("2_bufkk")
 
 [node name="Label" type="Label" parent="HUD"]
 offset_left = 29.0
@@ -46,6 +46,7 @@ offset_right = 284.0
 offset_bottom = 77.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.0110876, 0.0110876, 0.0110876, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -56,19 +57,19 @@ offset_bottom = 14843.0
 color = Color(0.615686, 0.682353, 0.756863, 1)
 
 [node name="MapManager" type="Node2D" parent="."]
-script = ExtResource("4_qc4fe")
+script = ExtResource("3_u4oks")
 tile_size = 256
 walker_count = 5
 walker_steps = 2500
 
 [node name="BaseTiles" type="TileMapLayer" parent="MapManager"]
-tile_set = ExtResource("4_erc5y")
+tile_set = ExtResource("4_v17b2")
 rendering_quadrant_size = 2
 
 [node name="DisplayTiles" type="TileMapLayer" parent="MapManager"]
-tile_set = ExtResource("4_erc5y")
+tile_set = ExtResource("4_v17b2")
 
-[node name="Area2D" parent="." instance=ExtResource("3_2guv0")]
+[node name="Area2D" parent="." instance=ExtResource("5_dvgoe")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.16, 0.16)
@@ -78,12 +79,12 @@ position = Vector2(-238, 26)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_6i8gq")
+texture = ExtResource("6_7sct2")
 
-[node name="HealthComponent" parent="StaticBody2D" instance=ExtResource("7_52en6")]
+[node name="HealthComponent" parent="StaticBody2D" instance=ExtResource("7_lucxo")]
 MAX_HEALTH = 100
 
-[node name="HurtboxComponent" parent="StaticBody2D" node_paths=PackedStringArray("health_component") instance=ExtResource("8_uk345")]
+[node name="HurtboxComponent" parent="StaticBody2D" node_paths=PackedStringArray("health_component") instance=ExtResource("8_ntlcy")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/HurtboxComponent"]

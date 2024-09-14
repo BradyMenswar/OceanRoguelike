@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w5d3ox2w4874"
-path="res://.godot/imported/directional_cone_gradient.png-aaec89473cb4cef29b696cd2a98c86b2.ctex"
+uid="uid://defi60vgkio07"
+path="res://.godot/imported/Test Wall Tileset.png-80db959cb71b7241eaf93c07da486d91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://directional_cone_gradient.png"
-dest_files=["res://.godot/imported/directional_cone_gradient.png-aaec89473cb4cef29b696cd2a98c86b2.ctex"]
+source_file="res://Sprites/Test Wall Tileset.png"
+dest_files=["res://.godot/imported/Test Wall Tileset.png-80db959cb71b7241eaf93c07da486d91.ctex"]
 
 [params]
 

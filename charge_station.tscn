@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ci0vyxgta78q8"]
 
-[ext_resource type="Texture2D" uid="uid://bqvgis3dvyedj" path="res://icon.svg" id="1_fvk2i"]
+[ext_resource type="Texture2D" uid="uid://bqvgis3dvyedj" path="res://Sprites/icon.svg" id="1_fvk2i"]
 [ext_resource type="Script" path="res://Scripts/charge_station.gd" id="1_i0g1n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ue0i6"]

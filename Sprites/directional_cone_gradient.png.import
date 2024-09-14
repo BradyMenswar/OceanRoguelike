@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hqw68u0e0otq"
-path="res://.godot/imported/Flashlight.png-c8db76b74e0491d954e16b168dac707d.ctex"
+uid="uid://w5d3ox2w4874"
+path="res://.godot/imported/directional_cone_gradient.png-e98fd4f69c22a6eeb51ee43f5c86c442.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Flashlight.png"
-dest_files=["res://.godot/imported/Flashlight.png-c8db76b74e0491d954e16b168dac707d.ctex"]
+source_file="res://Sprites/directional_cone_gradient.png"
+dest_files=["res://.godot/imported/directional_cone_gradient.png-e98fd4f69c22a6eeb51ee43f5c86c442.ctex"]
 
 [params]
 
