@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2uli4nrvwudr"]
+[gd_scene load_steps=16 format=3 uid="uid://d2uli4nrvwudr"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_nbnr1"]
 [ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://temp_character.png" id="2_i0dgi"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://Scripts/LightManager.gd" id="6_up0xy"]
 [ext_resource type="Texture2D" uid="uid://w5d3ox2w4874" path="res://directional_cone_gradient.png" id="6_wmmaf"]
 [ext_resource type="Script" path="res://Scripts/Aim.gd" id="7_oi1vj"]
+[ext_resource type="Script" path="res://attack_component.gd" id="9_4rlo8"]
+[ext_resource type="Resource" uid="uid://cpdjtvccndpg0" path="res://Weapons/auto_smg.tres" id="10_e7ufd"]
+[ext_resource type="Texture2D" uid="uid://6sw1qv1bq7pe" path="res://Weapon.png" id="11_unjv6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4ys"]
 radius = 40.0125
@@ -29,6 +32,7 @@ fill_to = Vector2(0.923077, 0.217949)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("energy_component")]
 position = Vector2(244, 183)
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_nbnr1")
 depleted_multiplier = 0.6
@@ -72,7 +76,7 @@ flashlight_cost = 0.2
 texture = SubResource("GradientTexture2D_0khvr")
 
 [node name="Swivel" type="Node2D" parent="."]
-position = Vector2(-6, 0)
+position = Vector2(-1, -16)
 script = ExtResource("7_oi1vj")
 
 [node name="Flashlight" type="PointLight2D" parent="Swivel"]
@@ -81,3 +85,21 @@ rotation = -1.57079
 scale = Vector2(1.02202, 0.654889)
 energy = 0.0
 texture = ExtResource("6_wmmaf")
+
+[node name="AttackComponent" type="Node2D" parent="Swivel"]
+script = ExtResource("9_4rlo8")
+weapon_resource = ExtResource("10_e7ufd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Swivel/AttackComponent"]
+position = Vector2(0, -18)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_unjv6")
+
+[node name="BarrelPlacement" type="Marker2D" parent="Swivel/AttackComponent"]
+position = Vector2(0, -46)
+
+[node name="BulletContainer" type="Node" parent="Swivel/AttackComponent"]
+
+[node name="RefireTimer" type="Timer" parent="Swivel/AttackComponent"]
+
+[connection signal="timeout" from="Swivel/AttackComponent/RefireTimer" to="Swivel/AttackComponent" method="_on_refire_timer_timeout"]
