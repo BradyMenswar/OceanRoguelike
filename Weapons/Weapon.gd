@@ -11,6 +11,6 @@ enum FiringMode {
 @export var spread_angle: float
 @export var bullet_count: int
 @export var firing_mode: FiringMode
-@export var range: float
+@export var max_range: float
 @export var shot_speed: float
 @export var damage: float

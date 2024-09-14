@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/aim.gd" id="7_5tehi"]
 [ext_resource type="Texture2D" uid="uid://w5d3ox2w4874" path="res://Sprites/directional_cone_gradient.png" id="8_0v0xt"]
 [ext_resource type="Script" path="res://Scripts/attack_component.gd" id="9_gxlrw"]
-[ext_resource type="Resource" uid="uid://budttpfmkjnvx" path="res://Weapons/semi_shotgun.tres" id="10_ivrg7"]
+[ext_resource type="Resource" uid="uid://dfbjeavv7xry7" path="res://Weapons/auto_ar.tres" id="10_cfpyq"]
 [ext_resource type="Texture2D" uid="uid://6sw1qv1bq7pe" path="res://Sprites/Weapon.png" id="11_wt7wj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4ys"]
@@ -19,13 +19,13 @@ radius = 40.0125
 radius = 36.0139
 
 [sub_resource type="Gradient" id="Gradient_s2o42"]
-offsets = PackedFloat32Array(0, 0.5, 0.6875, 0.993056)
-colors = PackedColorArray(1, 1, 1, 1, 0.141414, 0.141414, 0.141414, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.265432, 0.478395, 0.6875, 0.993056)
+colors = PackedColorArray(1, 1, 1, 1, 0.302053, 0.302053, 0.302053, 1, 0.141414, 0.141414, 0.141414, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0khvr"]
 gradient = SubResource("Gradient_s2o42")
-width = 800
-height = 800
+width = 900
+height = 900
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -62,7 +62,7 @@ shape = SubResource("CircleShape2D_bqgty")
 debug_color = Color(0.321569, 0.623529, 0, 0.419608)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.46, 1.46)
 drag_left_margin = 0.3
 drag_top_margin = 0.3
 drag_right_margin = 0.3
@@ -80,6 +80,7 @@ ship_light_depleted_intensity = 0.25
 flashlight_cost = 0.2
 
 [node name="ShipLight" type="PointLight2D" parent="."]
+shadow_item_cull_mask = 0
 texture = SubResource("GradientTexture2D_0khvr")
 
 [node name="Swivel" type="Node2D" parent="."]
@@ -91,12 +92,14 @@ unique_name_in_owner = true
 rotation = -1.57079
 scale = Vector2(1.02202, 0.654889)
 energy = 0.0
+shadow_enabled = true
+shadow_item_cull_mask = 2
 texture = ExtResource("8_0v0xt")
 texture_scale = 1.56
 
 [node name="AttackComponent" type="Node2D" parent="Swivel"]
 script = ExtResource("9_gxlrw")
-weapon_resource = ExtResource("10_ivrg7")
+weapon_resource = ExtResource("10_cfpyq")
 
 [node name="Sprite2D" type="Sprite2D" parent="Swivel/AttackComponent"]
 position = Vector2(0, -18)
