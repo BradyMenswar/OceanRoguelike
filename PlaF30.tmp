@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://w5d3ox2w4874" path="res://directional_cone_gradient.png" id="6_wmmaf"]
 [ext_resource type="Script" path="res://Scripts/Aim.gd" id="7_oi1vj"]
 [ext_resource type="Script" path="res://Scripts/attack_component.gd" id="9_4rlo8"]
-[ext_resource type="Resource" uid="uid://dfbjeavv7xry7" path="res://Weapons/auto_ar.tres" id="10_hbywe"]
+[ext_resource type="Resource" uid="uid://budttpfmkjnvx" path="res://Weapons/SemiShotgun.tres" id="10_46bso"]
 [ext_resource type="Texture2D" uid="uid://6sw1qv1bq7pe" path="res://Weapon.png" id="11_unjv6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4ys"]
@@ -96,7 +96,7 @@ texture_scale = 1.56
 
 [node name="AttackComponent" type="Node2D" parent="Swivel"]
 script = ExtResource("9_4rlo8")
-weapon_resource = ExtResource("10_hbywe")
+weapon_resource = ExtResource("10_46bso")
 
 [node name="Sprite2D" type="Sprite2D" parent="Swivel/AttackComponent"]
 position = Vector2(0, -18)

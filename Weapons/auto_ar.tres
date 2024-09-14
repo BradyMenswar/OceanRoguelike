@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://dfbjeavv7xry7"]
+
+[ext_resource type="Script" path="res://Weapons/Weapon.gd" id="1_eu0ys"]
+
+[resource]
+script = ExtResource("1_eu0ys")
+fire_rate = 4.0
+spread_angle = 10.0
+bullet_count = 1
+firing_mode = 1
+range = 600.0
+shot_speed = 700.0
+damage = 6.0

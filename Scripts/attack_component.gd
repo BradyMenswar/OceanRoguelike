@@ -38,6 +38,7 @@ func handle_bullet():
 	current_bullet.rotate(-PI/2)
 	current_bullet.max_range = weapon_resource.range
 	current_bullet.speed = weapon_resource.shot_speed
+	current_bullet.damage = weapon_resource.damage
 	
 	
 func _on_refire_timer_timeout() -> void:

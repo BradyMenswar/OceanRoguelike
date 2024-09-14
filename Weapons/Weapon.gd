@@ -13,3 +13,4 @@ enum FiringMode {
 @export var firing_mode: FiringMode
 @export var range: float
 @export var shot_speed: float
+@export var damage: float
