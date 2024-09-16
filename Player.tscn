@@ -35,7 +35,6 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_wv2iq")
 depleted_multiplier = 0.6
-turn_speed = 0.15
 energy_component = NodePath("EnergyComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -80,7 +79,8 @@ ship_light_depleted_intensity = 0.25
 flashlight_cost = 0.2
 
 [node name="ShipLight" type="PointLight2D" parent="."]
-shadow_item_cull_mask = 0
+shadow_enabled = true
+shadow_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_0khvr")
 
 [node name="Swivel" type="Node2D" parent="."]

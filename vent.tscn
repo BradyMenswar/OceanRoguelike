@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj06qa6qefrol"]
+
+[ext_resource type="Script" path="res://vent.gd" id="1_u564i"]
+[ext_resource type="Texture2D" uid="uid://dy4elflx6nhp0" path="res://Sprites/key.png" id="2_x0bdy"]
+
+[sub_resource type="SystemFont" id="SystemFont_5pals"]
+font_names = PackedStringArray("Segoe UI")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tlvb2"]
+radius = 111.018
+
+[node name="Vent" type="Node2D"]
+script = ExtResource("1_u564i")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="KeyPrompt" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(0, -50)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_x0bdy")
+
+[node name="Label" type="Label" parent="KeyPrompt"]
+offset_left = -12.0
+offset_top = -80.0
+offset_right = 88.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.517647, 0.466667, 0.305882, 1)
+theme_override_fonts/font = SubResource("SystemFont_5pals")
+theme_override_font_sizes/font_size = 111
+text = "E"
+metadata/_edit_use_anchors_ = true
+
+[node name="ActivateZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivateZone"]
+shape = SubResource("CircleShape2D_tlvb2")
+
+[connection signal="body_entered" from="ActivateZone" to="." method="_on_activate_zone_body_entered"]
+[connection signal="body_exited" from="ActivateZone" to="." method="_on_activate_zone_body_exited"]

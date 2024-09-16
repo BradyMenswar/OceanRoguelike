@@ -8,6 +8,6 @@ fire_rate = 10.0
 spread_angle = 20.0
 bullet_count = 1
 firing_mode = 1
-range = 400.0
+max_range = 450.0
 shot_speed = 1000.0
 damage = 5.0

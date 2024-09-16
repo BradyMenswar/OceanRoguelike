@@ -36,7 +36,7 @@ func handle_bullet():
 	var bullet_deviance = randf_range(-weapon_resource.spread_angle / 2, weapon_resource.spread_angle / 2)
 	current_bullet.global_rotation = global_rotation + deg_to_rad(bullet_deviance)
 	current_bullet.rotate(-PI/2)
-	current_bullet.max_range = weapon_resource.range
+	current_bullet.max_range = weapon_resource.max_range
 	current_bullet.speed = weapon_resource.shot_speed
 	current_bullet.damage = weapon_resource.damage
 	
