@@ -18,18 +18,18 @@ radius = 40.0125
 [sub_resource type="CircleShape2D" id="CircleShape2D_bqgty"]
 radius = 36.0139
 
-[sub_resource type="Gradient" id="Gradient_s2o42"]
+[sub_resource type="Gradient" id="Gradient_amvpn"]
 offsets = PackedFloat32Array(0, 0.265432, 0.478395, 0.6875, 0.993056)
 colors = PackedColorArray(1, 1, 1, 1, 0.302053, 0.302053, 0.302053, 1, 0.141414, 0.141414, 0.141414, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0khvr"]
-gradient = SubResource("Gradient_s2o42")
+gradient = SubResource("Gradient_amvpn")
 width = 900
 height = 900
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("energy_component")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("energy_component") groups=["Player"]]
 position = Vector2(244, 183)
 collision_mask = 3
 motion_mode = 1
@@ -59,14 +59,6 @@ collision_mask = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_bqgty")
 debug_color = Color(0.321569, 0.623529, 0, 0.419608)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.46, 1.46)
-drag_left_margin = 0.3
-drag_top_margin = 0.3
-drag_right_margin = 0.3
-drag_bottom_margin = 0.3
-editor_draw_drag_margin = true
 
 [node name="LightManager" type="Node2D" parent="." node_paths=PackedStringArray("energy_component")]
 unique_name_in_owner = true

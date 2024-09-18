@@ -6,24 +6,21 @@ class_name Player
 @export var acceleration = 50
 @export_range(0, 1) var turn_speed: float
 @export var energy_component: EnergyComponent
-@onready var camera: Camera2D = $Camera2D
 var current_depleted_multiplier = 1
 
-var within_range_of_vent = false
+var nearest_vent
 
 func _ready():
 	energy_component.energy_depleted.connect(_on_energy_depleted)
 	energy_component.energy_restored.connect(_on_energy_restored)
+	GlobalSignal.vent_event_completed.connect(_on_vent_event_completed)
+	
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("change_camera"):
-		if(camera.is_current()):
-			camera.enabled = false
-		else:
-			camera.enabled = true
-			camera.make_current()
-	elif event.is_action_pressed("interact") and within_range_of_vent:
-		print("Starting vent")
+		print("change Camera")
+	elif event.is_action_pressed("interact") and nearest_vent:
+		GlobalSignal.vent_event_started.emit(nearest_vent)
 			
 
 func _physics_process(_delta):
@@ -38,3 +35,6 @@ func _on_energy_depleted():
 
 func _on_energy_restored():
 	current_depleted_multiplier = 1
+
+func _on_vent_event_completed():
+	pass

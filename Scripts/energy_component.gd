@@ -13,8 +13,8 @@ func _ready():
 func use(amount: float):
 	energy -= amount
 	if energy <= 0:
-		emit_signal("energy_depleted")
-	GlobalSignal.emit_signal("energy_changed", energy, MAX_ENERGY)
+		energy_depleted.emit()
+	GlobalSignal.energy_changed.emit(energy, MAX_ENERGY)
 
 func check(amount: float):
 	if amount > energy:
@@ -23,8 +23,8 @@ func check(amount: float):
 	
 func charge(amount: float):
 	if energy <= 0:
-		emit_signal("energy_restored")
+		energy_restored.emit()
 	energy += amount;
 	if energy > MAX_ENERGY:
 		energy = MAX_ENERGY
-	GlobalSignal.emit_signal("energy_changed", energy, MAX_ENERGY)
+	GlobalSignal.energy_changed.emit(energy, MAX_ENERGY)

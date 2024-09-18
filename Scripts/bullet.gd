@@ -20,7 +20,6 @@ func _on_body_entered(_body: Node2D) -> void:
 	queue_free()
 
 
-
 func _on_area_entered(area: Area2D) -> void:
 	if area is HurtboxComponent:
 		area.damage(damage)

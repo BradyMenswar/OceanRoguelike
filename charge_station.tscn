@@ -1,22 +1,21 @@
 [gd_scene load_steps=6 format=3 uid="uid://ci0vyxgta78q8"]
 
-[ext_resource type="Texture2D" uid="uid://bqvgis3dvyedj" path="res://Sprites/icon.svg" id="1_fvk2i"]
 [ext_resource type="Script" path="res://Scripts/charge_station.gd" id="1_i0g1n"]
+[ext_resource type="Texture2D" uid="uid://bu0i7ngj5pjpg" path="res://Sprites/pylon.png" id="2_ew2on"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue0i6"]
-size = Vector2(140.35, 135.865)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8775k"]
+radius = 182.654
 
-[sub_resource type="Gradient" id="Gradient_aj3yo"]
-offsets = PackedFloat32Array(0, 0.708333, 0.930556)
-colors = PackedColorArray(0.223988, 0.153701, 0.0701536, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_s2o42"]
+offsets = PackedFloat32Array(0, 0.265432, 0.478395, 0.6875, 0.993056)
+colors = PackedColorArray(1, 1, 1, 1, 0.302053, 0.302053, 0.302053, 1, 0.141414, 0.141414, 0.141414, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8gho7"]
-gradient = SubResource("Gradient_aj3yo")
-width = 100
-height = 100
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aib5q"]
+gradient = SubResource("Gradient_s2o42")
+width = 200
+height = 200
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.102564, 0.196581)
 
 [node name="ChargeStation" type="Area2D"]
 script = ExtResource("1_i0g1n")
@@ -24,15 +23,18 @@ script = ExtResource("1_i0g1n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.38419e-07, 1.69407e-21)
 scale = Vector2(0.400001, 0.400001)
-shape = SubResource("RectangleShape2D_ue0i6")
+shape = SubResource("CircleShape2D_8775k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.400001, 0.400001)
-texture = ExtResource("1_fvk2i")
+position = Vector2(0, -15)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ew2on")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.25
-texture = SubResource("GradientTexture2D_8gho7")
+[node name="VentLight" type="PointLight2D" parent="."]
+color = Color(0.158169, 0.754165, 0.895811, 1)
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_aib5q")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
