@@ -36,5 +36,5 @@ func _on_energy_depleted():
 func _on_energy_restored():
 	current_depleted_multiplier = 1
 
-func _on_vent_event_completed():
+func _on_vent_event_completed(essence_amount):
 	pass

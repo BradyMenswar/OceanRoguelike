@@ -20,7 +20,7 @@ func _on_vent_event_started(vent_ref):
 	vent_camera.set_priority(1)
 
 
-func _on_vent_event_ended():
+func _on_vent_event_ended(_essence_amount):
 	reset_camera_priorities()
 	player_camera.set_priority(1)
 

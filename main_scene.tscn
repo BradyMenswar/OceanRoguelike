@@ -48,6 +48,17 @@ script = ExtResource("1_bglc7")
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("2_bufkk")
 
+[node name="EssenceTotal" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_right = 125.0
+offset_bottom = 30.0
+grow_horizontal = 2
+text = "Test"
+horizontal_alignment = 1
+
 [node name="Label" type="Label" parent="HUD"]
 offset_left = 29.0
 offset_top = 21.0
@@ -66,10 +77,10 @@ offset_bottom = 77.0
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -18850.0
-offset_top = -16737.0
-offset_right = 24935.0
-offset_bottom = 14777.0
+offset_left = -18975.0
+offset_top = -16763.0
+offset_right = 24810.0
+offset_bottom = 14751.0
 color = Color(0.615686, 0.682353, 0.756863, 1)
 
 [node name="MapManager" type="Node2D" parent="."]
@@ -112,7 +123,7 @@ texture = SubResource("GradientTexture2D_e585v")
 energy = 0.05
 
 [node name="Vent" parent="." instance=ExtResource("9_vcra5")]
-position = Vector2(-108, 372)
+position = Vector2(70, 366)
 
 [node name="CameraManager" type="Node" parent="."]
 script = ExtResource("11_tudpi")

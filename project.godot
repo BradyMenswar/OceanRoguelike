@@ -19,6 +19,7 @@ config/icon="res://Sprites/icon.svg"
 
 GlobalSignal="*res://Scripts/GlobalSignal.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+GameConstants="*res://Scripts/game_constants.gd"
 
 [display]
 

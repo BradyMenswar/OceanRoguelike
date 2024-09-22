@@ -8,6 +8,7 @@ extends Node2D
 @onready var vent_light = $VentLight
 
 var tether_body
+@export var essence_amount := 100.0
 @export var vent_depleted_light_energy = 0.25
 
 var vent_duration: float = 10
@@ -52,7 +53,7 @@ func _on_vent_event_started(vent_ref) -> void:
 
 
 func _on_vent_timer_timeout() -> void:
-	GlobalSignal.vent_event_completed.emit()
+	GlobalSignal.vent_event_completed.emit(essence_amount)
 	is_completed = true
 	harvester_light.energy = 0
 	vent_light.energy = vent_depleted_light_energy
