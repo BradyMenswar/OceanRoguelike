@@ -8,7 +8,10 @@ const NEIGHBORS = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1
 const WALL_BIT = "0"
 const FLOOR_BIT = "1"
 
-@export var tile_scale = 0.5
+@onready var tile_layer = $BaseTiles
+@onready var display_layer = $DisplayTiles
+
+@export var tile_scale: float = 0.5
 @export var map_size: int = 100
 @export var tile_size: int = 128
 @export var walker_count: int = 20
@@ -17,11 +20,8 @@ const FLOOR_BIT = "1"
 
 @export var floor_atlas = Vector2i(0, 3)
 @export var wall_atlas = Vector2i(2, 1)
-@onready var tile_layer = $BaseTiles
-@onready var display_layer = $DisplayTiles
 
 var map = []
-
 var neighbors_to_atlas = {
 	"0000": Vector2i(2, 1), # All corners
 	"0001": Vector2i(3, 1), # Inner top-left corner
@@ -38,20 +38,19 @@ var neighbors_to_atlas = {
 	"1100": Vector2i(3, 0), # Bottom edge
 	"1101": Vector2i(0, 0), # Outer bottom-left corner
 	"1110": Vector2i(1, 3), # Outer bottom-right corner
-	"1111": Vector2i(0, 3)  # No corners
+	"1111": Vector2i(0, 3) # No corners
 }
 	
-
 
 func _ready() -> void:
 	tile_layer.scale.x = tile_scale
 	tile_layer.scale.y = tile_scale
 	display_layer.scale.x = tile_scale
 	display_layer.scale.y = tile_scale
-	tile_layer.position.x  = -tile_size * tile_scale * (map_size / 2)
-	tile_layer.position.y  = -tile_size * tile_scale * (map_size / 2)
-	display_layer.position.x  = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
-	display_layer.position.y  = (-tile_size * tile_scale * map_size / 2 ) - (tile_size * tile_scale / 2)
+	tile_layer.position.x = -tile_size * tile_scale * (floor(map_size) / 2)
+	tile_layer.position.y = -tile_size * tile_scale * (floor(map_size) / 2)
+	display_layer.position.x = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
+	display_layer.position.y = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
 	seed(12345)
 	generate_map()
 	
@@ -59,15 +58,14 @@ func _ready() -> void:
 		set_display_tile(coord)
 	
 
-
-func initialize_map():
+func initialize_map() -> void:
 	for row in range(map_size):
 		map.push_back([])
 		for col in range(map_size):
 			map[row].push_back({"state": EMPTY})
 
 
-func generate_map():
+func generate_map() -> void:
 	initialize_map()
 	walk()
 	clean_inside()
@@ -75,9 +73,9 @@ func generate_map():
 	draw_map()
 	
 
-func walk():
+func walk() -> void:
 	for iteration in range(walker_count):
-		var current_location = Vector2(map_size / 2, map_size / 2)
+		var current_location: Vector2i = Vector2i(floor(map_size) / 2, floor(map_size) / 2)
 		var direction
 		for step in range(walker_steps):
 			direction = randi() % 4
@@ -91,9 +89,10 @@ func walk():
 				if current_location.y > 0: current_location.y -= 1
 			map[current_location.x][current_location.y].state = FLOOR
 
-func calculate_walls():
+
+func calculate_walls() -> void:
 	for row in range(map.size()):
-		for col in range (map[row].size()):
+		for col in range(map[row].size()):
 			if map[row][col].state == FLOOR:
 				var directions = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
 				for direction in directions:
@@ -106,10 +105,10 @@ func calculate_walls():
 					map[row][col].state = WALL
 
 
-func clean_inside():
+func clean_inside() -> void:
 	for iteration in range(clean_iterations):
 		for row in range(map.size()):
-			for col in range (map[row].size()):
+			for col in range(map[row].size()):
 				var surrounded_by_floor = true
 				if map[row][col].state == EMPTY:
 					var directions = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
@@ -123,37 +122,37 @@ func clean_inside():
 						map[row][col].state = FLOOR
 						
 
-func draw_map():
+func draw_map() -> void:
 	var floor_tiles = []
 	for row in range(map.size()):
-		for col in range (map[row].size()):
-			floor_tiles.push_back(Vector2i(row,col))
+		for col in range(map[row].size()):
+			floor_tiles.push_back(Vector2i(row, col))
 			var current_tile = map[row][col]
 			if current_tile.state == EMPTY:
 				#tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(2,5))
 				pass
 			elif current_tile.state == WALL:
 				tile_layer.set_cell(Vector2i(row, col), 1, wall_atlas)
-				pass
 			elif current_tile.state == FLOOR:
 				tile_layer.set_cell(Vector2i(row, col), 1, floor_atlas)
-				pass
 
-func set_display_tile(base_position):
+
+func set_display_tile(base_position) -> void:
 	for index in range(NEIGHBORS.size()):
 		var new_position = base_position + NEIGHBORS[index]
 		display_layer.set_cell(new_position, 1, calculate_display_tile(new_position))
 		
 
-func calculate_display_tile(coords):
+func calculate_display_tile(coords) -> Vector2i:
 	var bottom_right = get_base_tile(coords - NEIGHBORS[0])
 	var bottom_left = get_base_tile(coords - NEIGHBORS[1])
 	var top_right = get_base_tile(coords - NEIGHBORS[2])
 	var top_left = get_base_tile(coords - NEIGHBORS[3])
 	
 	return neighbors_to_atlas[top_left + top_right + bottom_left + bottom_right]
-	
-func get_base_tile(coords):
+
+
+func get_base_tile(coords) -> String:
 	var atlas = tile_layer.get_cell_atlas_coords(coords)
 	if atlas == floor_atlas:
 		return FLOOR_BIT;

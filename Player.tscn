@@ -47,10 +47,8 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_fk6na")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_36cds")]
-MAX_HEALTH = 10
 
 [node name="EnergyComponent" parent="." instance=ExtResource("4_glt8y")]
-MAX_ENERGY = 100.0
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("5_xdc5d")]
 collision_layer = 1

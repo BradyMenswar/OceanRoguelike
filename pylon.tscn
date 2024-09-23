@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ci0vyxgta78q8"]
 
-[ext_resource type="Script" path="res://Scripts/charge_station.gd" id="1_i0g1n"]
+[ext_resource type="Script" path="res://Scripts/pylon.gd" id="1_i0g1n"]
 [ext_resource type="Texture2D" uid="uid://bu0i7ngj5pjpg" path="res://Sprites/pylon.png" id="2_ew2on"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8775k"]
