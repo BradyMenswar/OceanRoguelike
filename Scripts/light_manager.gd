@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var ship_light = $"../ShipLight"
+
 @export var base_cost: float
 @export var energy_component: EnergyComponent
 @export var ship_light_base_intensity: float
@@ -21,13 +23,13 @@ func _process(delta) -> void:
 	
 
 func _on_energy_depleted() -> void:
-	%ShipLight.energy = ship_light_depleted_intensity
+	ship_light.energy = ship_light_depleted_intensity
 	is_flashlight_on = false
 	%Flashlight.energy = 0
 
 
 func _on_energy_restored() -> void:
-	%ShipLight.energy = ship_light_base_intensity
+	ship_light.energy = ship_light_base_intensity
 
 
 func _input(event) -> void:

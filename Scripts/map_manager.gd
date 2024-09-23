@@ -1,4 +1,5 @@
 extends Node2D
+class_name MapManager
 
 const EMPTY = 0
 const WALL = 1
@@ -57,6 +58,7 @@ func _ready() -> void:
 	for coord in tile_layer.get_used_cells():
 		set_display_tile(coord)
 	
+	GlobalSignal.tilemap_generated.emit(self)
 
 func initialize_map() -> void:
 	for row in range(map_size):
@@ -129,12 +131,16 @@ func draw_map() -> void:
 			floor_tiles.push_back(Vector2i(row, col))
 			var current_tile = map[row][col]
 			if current_tile.state == EMPTY:
-				#tile_layer.set_cell(Vector2i(row, col), 0, Vector2i(2,5))
 				pass
 			elif current_tile.state == WALL:
 				tile_layer.set_cell(Vector2i(row, col), 1, wall_atlas)
 			elif current_tile.state == FLOOR:
 				tile_layer.set_cell(Vector2i(row, col), 1, floor_atlas)
+
+
+func set_tile(coords: Vector2i, atlas_coords: Vector2i) -> void:
+	tile_layer.set_cell(coords, 1, atlas_coords)
+	set_display_tile(coords)
 
 
 func set_display_tile(base_position) -> void:
