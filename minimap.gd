@@ -20,15 +20,19 @@ func _process(delta: float) -> void:
 
 
 func set_tile_map() -> void:
-	var base_tiles = map_manager.tile_layer
+	var base_tiles = map_manager.display_layer
 	for tile_coords in base_tiles.get_used_cells():
-		var old_cell_atlas = base_tiles.get_cell_atlas_coords(tile_coords)
-		minimap_tiles.set_cell(tile_coords, 1, old_cell_atlas)
+		var old_cell_atlas = map_manager.display_layer.get_cell_atlas_coords(tile_coords)
+		minimap_tiles.set_cell(tile_coords, 2, old_cell_atlas)
 	
-	minimap_tiles.scale.x = map_manager.tile_scale
-	minimap_tiles.scale.y = map_manager.tile_scale
-	minimap_tiles.position.x = -map_manager.tile_size * map_manager.tile_scale * (floor(map_manager.map_size) / 2)
-	minimap_tiles.position.y = -map_manager.tile_size * map_manager.tile_scale * (floor(map_manager.map_size) / 2)
+	var tile_scale = map_manager.tile_scale
+	var tile_size = map_manager.tile_size
+	var map_size = map_manager.map_size
+	
+	minimap_tiles.scale.x = tile_scale
+	minimap_tiles.scale.y = tile_scale
+	minimap_tiles.position.x = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
+	minimap_tiles.position.y = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
 
 func _on_player_spawned(player_ref) -> void:
 	player = player_ref
