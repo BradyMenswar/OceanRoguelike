@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ocean Roguelike"
-run/main_scene="res://Levels/main_scene.tscn"
+run/main_scene="res://Levels/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
@@ -25,7 +25,6 @@ GameGlobals="*res://Scripts/game_globals.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=2
 window/size/resizable=false
 
 [editor_plugins]
@@ -78,4 +77,3 @@ interact={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.498039, 0.439216, 0.541176, 1)

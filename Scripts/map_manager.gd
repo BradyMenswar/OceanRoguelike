@@ -52,7 +52,7 @@ func _ready() -> void:
 	tile_layer.position.y = -tile_size * tile_scale * (floor(map_size) / 2)
 	display_layer.position.x = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
 	display_layer.position.y = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
-	seed(12345)
+	seed(GameGlobals.run_seed)
 	generate_map()
 	
 	for coord in tile_layer.get_used_cells():

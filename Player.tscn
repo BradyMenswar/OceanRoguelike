@@ -63,7 +63,7 @@ position = Vector2(-6, 0)
 script = ExtResource("6_0uwx3")
 base_cost = 0.1
 energy_component = NodePath("../EnergyComponent")
-ship_light_base_intensity = 0.5
+ship_light_base_intensity = 1.0
 ship_light_depleted_intensity = 0.25
 flashlight_cost = 0.2
 
