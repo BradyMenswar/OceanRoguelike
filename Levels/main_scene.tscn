@@ -1,28 +1,28 @@
 [gd_scene load_steps=20 format=3 uid="uid://ctocgcgtxcg3c"]
 
-[ext_resource type="Script" path="res://Scripts/game.gd" id="1_bglc7"]
-[ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_bufkk"]
-[ext_resource type="Script" path="res://Scripts/map_manager.gd" id="3_u4oks"]
-[ext_resource type="TileSet" uid="uid://bittc6rbhu1ca" path="res://temp_tileset.tres" id="4_v17b2"]
-[ext_resource type="PackedScene" uid="uid://ci0vyxgta78q8" path="res://pylon.tscn" id="5_dvgoe"]
-[ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="6_7sct2"]
-[ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="7_lucxo"]
-[ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="8_ntlcy"]
-[ext_resource type="PackedScene" uid="uid://bj06qa6qefrol" path="res://vent.tscn" id="9_vcra5"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="10_tuxht"]
-[ext_resource type="Script" path="res://camera_manager.gd" id="11_tudpi"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_aqdyh"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_ir26g"]
-[ext_resource type="Script" path="res://Scripts/object_spawner.gd" id="14_vr7q2"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_i2iab"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_3yk88"]
+[ext_resource type="Script" path="res://Scripts/camera_manager.gd" id="3_3t244"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_0inhx"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_h2usa"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_nfdgx"]
+[ext_resource type="Script" path="res://Scripts/map_manager.gd" id="7_n3g5d"]
+[ext_resource type="TileSet" uid="uid://bittc6rbhu1ca" path="res://temp_tileset.tres" id="8_bev71"]
+[ext_resource type="PackedScene" uid="uid://ci0vyxgta78q8" path="res://pylon.tscn" id="9_okhg7"]
+[ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="10_bd4lk"]
+[ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="11_tybnx"]
+[ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="12_k3wak"]
+[ext_resource type="PackedScene" uid="uid://bj06qa6qefrol" path="res://vent.tscn" id="13_4vp6w"]
+[ext_resource type="Script" path="res://Scripts/object_spawner.gd" id="14_swx5u"]
 
 [sub_resource type="Resource" id="Resource_nv8ax"]
-script = ExtResource("13_ir26g")
+script = ExtResource("6_nfdgx")
 duration = 1.0
 transition = 0
 ease = 2
 
 [sub_resource type="Resource" id="Resource_vbvwo"]
-script = ExtResource("13_ir26g")
+script = ExtResource("6_nfdgx")
 duration = 1.0
 transition = 0
 ease = 2
@@ -44,10 +44,10 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.102564, 0.196581)
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_bglc7")
+script = ExtResource("1_i2iab")
 
 [node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("2_bufkk")
+script = ExtResource("2_3yk88")
 
 [node name="EssenceTotal" type="Label" parent="HUD"]
 anchors_preset = 5
@@ -75,23 +75,23 @@ offset_right = 284.0
 offset_bottom = 77.0
 
 [node name="CameraManager" type="Node" parent="."]
-script = ExtResource("11_tudpi")
+script = ExtResource("3_3t244")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 2
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("10_tuxht")
+script = ExtResource("4_0inhx")
 
 [node name="PlayerCamera" type="Node2D" parent="." groups=["Camera"]]
 unique_name_in_owner = true
-script = ExtResource("12_aqdyh")
+script = ExtResource("5_h2usa")
 follow_mode = 1
 tween_resource = SubResource("Resource_nv8ax")
 
 [node name="VentCamera" type="Node2D" parent="." groups=["Camera"]]
 unique_name_in_owner = true
-script = ExtResource("12_aqdyh")
+script = ExtResource("5_h2usa")
 follow_mode = 1
 tween_resource = SubResource("Resource_vbvwo")
 
@@ -109,30 +109,30 @@ offset_bottom = 14751.0
 color = Color(0.615686, 0.682353, 0.756863, 1)
 
 [node name="MapManager" type="Node2D" parent="."]
-script = ExtResource("3_u4oks")
+script = ExtResource("7_n3g5d")
 tile_size = 256
 walker_count = 5
 walker_steps = 2500
 
 [node name="BaseTiles" type="TileMapLayer" parent="MapManager"]
-tile_set = ExtResource("4_v17b2")
+tile_set = ExtResource("8_bev71")
 rendering_quadrant_size = 2
 
 [node name="DisplayTiles" type="TileMapLayer" parent="MapManager"]
-tile_set = ExtResource("4_v17b2")
+tile_set = ExtResource("8_bev71")
 
-[node name="Pylon" parent="." instance=ExtResource("5_dvgoe")]
+[node name="Pylon" parent="." instance=ExtResource("9_okhg7")]
 
 [node name="TestEnemy" type="Node2D" parent="."]
 position = Vector2(-238, 26)
 
 [node name="Sprite2D" type="Sprite2D" parent="TestEnemy"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_7sct2")
+texture = ExtResource("10_bd4lk")
 
-[node name="HealthComponent" parent="TestEnemy" instance=ExtResource("7_lucxo")]
+[node name="HealthComponent" parent="TestEnemy" instance=ExtResource("11_tybnx")]
 
-[node name="HurtboxComponent" parent="TestEnemy" node_paths=PackedStringArray("health_component") instance=ExtResource("8_ntlcy")]
+[node name="HurtboxComponent" parent="TestEnemy" node_paths=PackedStringArray("health_component") instance=ExtResource("12_k3wak")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestEnemy/HurtboxComponent"]
@@ -142,8 +142,8 @@ shape = SubResource("CircleShape2D_f04b6")
 position = Vector2(7, -13)
 texture = SubResource("GradientTexture2D_e585v")
 
-[node name="Vent" parent="." instance=ExtResource("9_vcra5")]
+[node name="Vent" parent="." instance=ExtResource("13_4vp6w")]
 position = Vector2(70, 366)
 
 [node name="ObjectSpawner" type="Node2D" parent="."]
-script = ExtResource("14_vr7q2")
+script = ExtResource("14_swx5u")

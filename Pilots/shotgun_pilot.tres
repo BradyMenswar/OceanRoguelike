@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Pilot" load_steps=3 format=3 uid="uid://dgv3usklnxc3s"]
+
+[ext_resource type="Script" path="res://Pilots/pilot.gd" id="1_hfkol"]
+[ext_resource type="Resource" uid="uid://budttpfmkjnvx" path="res://Weapons/semi_shotgun.tres" id="2_ntftf"]
+
+[resource]
+script = ExtResource("1_hfkol")
+starting_weapon = ExtResource("2_ntftf")

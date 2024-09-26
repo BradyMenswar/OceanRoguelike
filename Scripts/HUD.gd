@@ -26,4 +26,4 @@ func _on_vent_event_completed(essence_amount) -> void:
 
 
 func update_essence_ui() -> void:
-	essence_ui.text = "Total Essence: " + str(essence_total) + "/" + str(GameConstants.STAGE_ONE_ESSENCE_REQUIREMENT)
+	essence_ui.text = "Total Essence: " + str(essence_total) + "/" + str(GameGlobals.STAGE_ONE_ESSENCE_REQUIREMENT)

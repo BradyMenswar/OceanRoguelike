@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Pilot" load_steps=3 format=3 uid="uid://gewlr4obiisb"]
+
+[ext_resource type="Script" path="res://Pilots/pilot.gd" id="1_wsftn"]
+[ext_resource type="Resource" uid="uid://cpdjtvccndpg0" path="res://Weapons/auto_smg.tres" id="2_gdljk"]
+
+[resource]
+script = ExtResource("1_wsftn")
+starting_weapon = ExtResource("2_gdljk")

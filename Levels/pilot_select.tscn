@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf5p81rd8dqpw"]
+
+[ext_resource type="Script" path="res://Scripts/pilot_select.gd" id="1_8mdlr"]
+
+[node name="PilotSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8mdlr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.5
+offset_top = -20.0
+offset_right = 89.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pilot 1" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Pilot 1"
+
+[node name="Pilot 2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Pilot 2"
+
+[node name="Pilot 3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Pilot 3"
+
+[connection signal="pressed" from="HBoxContainer/Pilot 1" to="." method="_on_pilot_1_pressed"]
+[connection signal="pressed" from="HBoxContainer/Pilot 2" to="." method="_on_pilot_2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Pilot 3" to="." method="_on_pilot_3_pressed"]

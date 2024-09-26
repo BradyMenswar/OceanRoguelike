@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2uli4nrvwudr"]
+[gd_scene load_steps=15 format=3 uid="uid://d2uli4nrvwudr"]
 
 [ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_wv2iq"]
 [ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="2_fk6na"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Scripts/aim.gd" id="7_5tehi"]
 [ext_resource type="Texture2D" uid="uid://w5d3ox2w4874" path="res://Sprites/directional_cone_gradient.png" id="8_0v0xt"]
 [ext_resource type="Script" path="res://Scripts/attack_component.gd" id="9_gxlrw"]
-[ext_resource type="Resource" uid="uid://dfbjeavv7xry7" path="res://Weapons/auto_ar.tres" id="10_cfpyq"]
 [ext_resource type="Texture2D" uid="uid://6sw1qv1bq7pe" path="res://Sprites/Weapon.png" id="11_wt7wj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4ys"]
@@ -89,7 +88,6 @@ texture_scale = 1.56
 
 [node name="AttackComponent" type="Node2D" parent="Swivel"]
 script = ExtResource("9_gxlrw")
-weapon_resource = ExtResource("10_cfpyq")
 
 [node name="Sprite2D" type="Sprite2D" parent="Swivel/AttackComponent"]
 position = Vector2(0, -18)

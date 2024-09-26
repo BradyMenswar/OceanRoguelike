@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ocean Roguelike"
-run/main_scene="res://main_scene.tscn"
+run/main_scene="res://Levels/main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
@@ -19,7 +19,7 @@ config/icon="res://Sprites/icon.svg"
 
 GlobalSignal="*res://Scripts/GlobalSignal.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-GameConstants="*res://Scripts/game_constants.gd"
+GameGlobals="*res://Scripts/game_globals.gd"
 
 [display]
 

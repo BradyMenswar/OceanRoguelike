@@ -4,11 +4,14 @@ extends Node2D
 @onready var bullet_container = $BulletContainer
 @onready var barrel_placement = $BarrelPlacement
 
-@export var weapon_resource: Weapon
+var weapon_resource: Weapon
 
 var bullet_scene = preload("res://bullet.tscn")
 var can_shoot: bool = true
 var is_shooting: bool = false
+
+func _init() -> void:
+	weapon_resource = GameGlobals.current_pilot.starting_weapon
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and can_shoot:
