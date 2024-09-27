@@ -85,17 +85,22 @@ offset_bottom = 22.0
 text = "Seed: 12345"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="HUD"]
+modulate = Color(1, 1, 1, 0.603922)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -256.0
-offset_bottom = 256.0
+offset_left = -300.0
+offset_top = 34.0
+offset_right = -44.0
+offset_bottom = 290.0
 grow_horizontal = 0
 
 [node name="MinimapViewport" type="SubViewport" parent="HUD/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(256, 256)
 render_target_update_mode = 4
+
+[node name="Node" type="Node" parent="HUD"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 2
@@ -122,10 +127,10 @@ energy = 0.05
 color = Color(0, 0, 0, 1)
 
 [node name="Background" type="ColorRect" parent="."]
-offset_left = -19023.0
-offset_top = -16733.0
-offset_right = 24762.0
-offset_bottom = 14781.0
+offset_left = -19037.0
+offset_top = -16727.0
+offset_right = 24748.0
+offset_bottom = 14787.0
 color = Color(0.615686, 0.682353, 0.756863, 1)
 
 [node name="MapManager" type="Node2D" parent="."]

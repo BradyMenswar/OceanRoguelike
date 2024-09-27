@@ -3,11 +3,11 @@ extends CanvasLayer
 @onready var essence_ui = $EssenceTotal
 @onready var seed_text = $Seed
 @onready var minimap_viewport = $SubViewportContainer/MinimapViewport
-var minimap_scene := preload("res://minimap.tscn")
+@onready var viewport_container = $SubViewportContainer
 
+var minimap_scene := preload("res://minimap.tscn")
 var default_minimap_size = Vector2(256, 256)
 var expanded_minimap_size = Vector2(512, 512)
-
 var max_energy: float
 var essence_total: float = 0.0
 
@@ -42,9 +42,11 @@ func _on_tilemap_generated(map_manager):
 	
 func _on_minimap_expand_toggled(minimap_expanded: bool) -> void:
 	if minimap_expanded:
-		minimap_viewport.size = expanded_minimap_size 
+		#minimap_viewport.size = expanded_minimap_size 
+		pass
 	else:
-		minimap_viewport.size = default_minimap_size
+		#minimap_viewport.size = default_minimap_size
+		pass
 
 
 func update_essence_ui() -> void:

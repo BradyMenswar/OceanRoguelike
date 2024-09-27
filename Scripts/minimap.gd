@@ -8,7 +8,7 @@ class_name Minimap
 
 @export var fog_radius: float = 40.5
 @export var default_zoom: Vector2 = Vector2(0.095, 0.095)
-@export var expanded_zoom: Vector2 = Vector2(0.035, 0.035)
+@export var expanded_zoom: Vector2 = Vector2(0.04, 0.04)
 
 var minimap_expanded: bool = false
 var player
@@ -21,7 +21,7 @@ func _ready() -> void:
 	GlobalSignal.player_spawned.connect(_on_player_spawned)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player:
 		camera.global_position = player.global_position
 		player_marker.global_position = player.global_position
@@ -69,6 +69,7 @@ func initialize_fog() -> void:
 	fog_tiles.position.x = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
 	fog_tiles.position.y = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
 
+
 func set_tile_map() -> void:
 	var base_tiles = map_manager.display_layer
 	for tile_coords in base_tiles.get_used_cells():
@@ -83,6 +84,7 @@ func set_tile_map() -> void:
 	minimap_tiles.scale.y = tile_scale
 	minimap_tiles.position.x = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
 	minimap_tiles.position.y = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
+
 
 func _on_player_spawned(player_ref) -> void:
 	player = player_ref
