@@ -11,6 +11,7 @@ class_name Minimap
 @export var expanded_zoom: Vector2 = Vector2(0.04, 0.04)
 
 var minimap_expanded: bool = false
+var debug_map_revealed: bool = false
 var player
 var map_manager: MapManager
 
@@ -31,6 +32,12 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("expand_minimap"):
 		expand_minimap()
+	if event.is_action_pressed("debug_show_map"):
+		if debug_map_revealed:
+			fog_tiles.show()
+		else:
+			fog_tiles.hide()
+		debug_map_revealed = !debug_map_revealed
 
 
 func update_fog() -> void:

@@ -22,6 +22,8 @@ const FLOOR_BIT = "1"
 @export var floor_atlas = Vector2i(0, 3)
 @export var wall_atlas = Vector2i(2, 1)
 
+@export var starting_area_radius: float = 4.5
+
 var map = []
 var neighbors_to_atlas = {
 	"0000": Vector2i(2, 1), # All corners
@@ -70,6 +72,7 @@ func initialize_map() -> void:
 func generate_map() -> void:
 	initialize_map()
 	walk()
+	clear_radius(Vector2i(floor(map_size / 2), floor(map_size / 2)), starting_area_radius)
 	clean_inside()
 	calculate_walls()
 	draw_map()
@@ -122,7 +125,7 @@ func clean_inside() -> void:
 							surrounded_by_floor = false
 					if surrounded_by_floor:
 						map[row][col].state = FLOOR
-						
+
 
 func draw_map() -> void:
 	var floor_tiles = []
@@ -138,6 +141,31 @@ func draw_map() -> void:
 				tile_layer.set_cell(Vector2i(row, col), 1, floor_atlas)
 
 
+func clear_radius(center: Vector2i, radius: float):
+	var top = ceil(center.y - radius)
+	var bottom = floor(center.y + radius)
+	var left = ceil(center.x - radius)
+	var right = floor(center.x + radius)
+	print("Center:" + str(center))
+	print("Top:" + str(top))
+	print("Bottom:" + str(bottom))
+	print("Left:" + str(left))
+	print("Right:" + str(right))
+	for row in range(top, bottom + 1):
+		for col in range(left, right + 1):
+			print(str(row) + ',' + str(col))
+			if inside_circle(center, Vector2i(col, row), radius):
+				map[row][col].state = FLOOR
+
+
+func inside_circle(center: Vector2i, tile_coords: Vector2i, radius: float) -> bool:
+	var x_distance = center.x - tile_coords.x
+	var y_distance = center.y - tile_coords.y
+
+	var distance_squared = x_distance * x_distance + y_distance * y_distance;
+	return distance_squared <= radius * radius;
+	
+	
 func set_tile(coords: Vector2i, atlas_coords: Vector2i) -> void:
 	tile_layer.set_cell(coords, 1, atlas_coords)
 	set_display_tile(coords)
