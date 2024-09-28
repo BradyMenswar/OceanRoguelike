@@ -146,14 +146,8 @@ func clear_radius(center: Vector2i, radius: float):
 	var bottom = floor(center.y + radius)
 	var left = ceil(center.x - radius)
 	var right = floor(center.x + radius)
-	print("Center:" + str(center))
-	print("Top:" + str(top))
-	print("Bottom:" + str(bottom))
-	print("Left:" + str(left))
-	print("Right:" + str(right))
 	for row in range(top, bottom + 1):
 		for col in range(left, right + 1):
-			print(str(row) + ',' + str(col))
 			if inside_circle(center, Vector2i(col, row), radius):
 				map[row][col].state = FLOOR
 
