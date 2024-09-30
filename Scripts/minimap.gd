@@ -8,7 +8,7 @@ class_name Minimap
 
 @export var fog_radius: float = 40.5
 @export var default_zoom: Vector2 = Vector2(0.095, 0.095)
-@export var expanded_zoom: Vector2 = Vector2(0.04, 0.04)
+@export var expanded_zoom: Vector2
 
 var minimap_expanded: bool = false
 var debug_map_revealed: bool = false
@@ -20,7 +20,15 @@ func _ready() -> void:
 	initialize_fog()
 	set_tile_map()
 	GlobalSignal.player_spawned.connect(_on_player_spawned)
-
+	var minimap_size = 256
+	var tile_size = 256 * 0.5
+	var tile_map_rect: Rect2i = map_manager.tile_layer.get_used_rect()
+	var larger_scale = max(tile_map_rect.size.x, tile_map_rect.size.y)
+	expanded_zoom = Vector2(minimap_size / (float(larger_scale) * tile_size), minimap_size / (float(larger_scale) * tile_size))
+	camera.limit_left = tile_map_rect.position.x * tile_size
+	camera.limit_right = (tile_map_rect.position.x + tile_map_rect.size.x) * tile_size - 256
+	camera.limit_top = tile_map_rect.position.y * tile_size
+	camera.limit_bottom = (tile_map_rect.position.y + tile_map_rect.size.y) * tile_size - 256
 
 func _process(_delta: float) -> void:
 	if player:
@@ -63,18 +71,16 @@ func inside_circle(center: Vector2i, tile_coords: Vector2i, radius: float) -> bo
 
 
 func initialize_fog() -> void:
+	# need to reorient the fog to fit the entire displayed map
 	var tile_scale = map_manager.tile_scale
-	var tile_size = map_manager.tile_size
-	var map_size = map_manager.map_size
-	
-	for row in range(map_size):
-		for col in range(map_size):
-			fog_tiles.set_cell(Vector2i(row, col), 0, Vector2i(0, 0))
+	var map_rect: Rect2i = map_manager.tile_layer.get_used_rect()
+	var larger_scale = max(map_rect.size.x, map_rect.size.y)
+	for row in range(map_rect.position.y, map_rect.position.y + larger_scale):
+		for col in range(map_rect.position.x, map_rect.position.x + larger_scale):
+			fog_tiles.set_cell(Vector2i(col, row), 0, Vector2i(0, 0))
 			
 	fog_tiles.scale.x = tile_scale
 	fog_tiles.scale.y = tile_scale
-	fog_tiles.position.x = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
-	fog_tiles.position.y = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
 
 
 func set_tile_map() -> void:
@@ -85,12 +91,11 @@ func set_tile_map() -> void:
 	
 	var tile_scale = map_manager.tile_scale
 	var tile_size = map_manager.tile_size
-	var map_size = map_manager.map_size
 	
 	minimap_tiles.scale.x = tile_scale
 	minimap_tiles.scale.y = tile_scale
-	minimap_tiles.position.x = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
-	minimap_tiles.position.y = (-tile_size * tile_scale * map_size / 2) - (tile_size * tile_scale / 2)
+	minimap_tiles.position.x =  -(tile_size * tile_scale / 2)
+	minimap_tiles.position.y =  -(tile_size * tile_scale / 2)
 
 
 func _on_player_spawned(player_ref) -> void:

@@ -136,8 +136,9 @@ color = Color(0.615686, 0.682353, 0.756863, 1)
 [node name="MapManager" type="Node2D" parent="."]
 script = ExtResource("7_n3g5d")
 tile_size = 256
-walker_count = 5
-walker_steps = 2500
+walker_count = 10
+walker_steps = 500
+clean_iterations = 4
 
 [node name="BaseTiles" type="TileMapLayer" parent="MapManager"]
 tile_set = ExtResource("8_bev71")

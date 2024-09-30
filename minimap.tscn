@@ -17,7 +17,6 @@ sources/0 = SubResource("TileSetAtlasSource_2p58q")
 [node name="Minimap" type="Node2D"]
 script = ExtResource("1_4xkrj")
 fog_radius = 5.5
-expanded_zoom = Vector2(0.02, 0.02)
 
 [node name="Background" type="ColorRect" parent="."]
 offset_left = -25597.0
