@@ -10,6 +10,8 @@ func _init(width, height) -> void:
 			grid[i].push_back(null)
 
 func set_point(point: Vector2i, value: Vector2):
+	if grid[point.x][point.y] != null:
+		print("OVERWRITING POINT: "+  str(point))
 	grid[point.x][point.y] = value
 
 func get_grid_count():
