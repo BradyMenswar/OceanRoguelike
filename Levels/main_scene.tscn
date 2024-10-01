@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ctocgcgtxcg3c"]
+[gd_scene load_steps=19 format=3 uid="uid://ctocgcgtxcg3c"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_i2iab"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_3yk88"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="10_bd4lk"]
 [ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="11_tybnx"]
 [ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="12_k3wak"]
-[ext_resource type="PackedScene" uid="uid://bj06qa6qefrol" path="res://vent.tscn" id="13_4vp6w"]
 [ext_resource type="Script" path="res://Scripts/object_spawner.gd" id="14_swx5u"]
 
 [sub_resource type="Resource" id="Resource_nv8ax"]
@@ -133,6 +132,9 @@ offset_right = 24748.0
 offset_bottom = 14787.0
 color = Color(0.615686, 0.682353, 0.756863, 1)
 
+[node name="ObjectSpawner" type="Node2D" parent="."]
+script = ExtResource("14_swx5u")
+
 [node name="MapManager" type="Node2D" parent="."]
 script = ExtResource("7_n3g5d")
 tile_size = 256
@@ -168,9 +170,3 @@ shape = SubResource("CircleShape2D_f04b6")
 [node name="PointLight2D" type="PointLight2D" parent="TestEnemy"]
 position = Vector2(7, -13)
 texture = SubResource("GradientTexture2D_e585v")
-
-[node name="Vent" parent="." instance=ExtResource("13_4vp6w")]
-position = Vector2(70, 366)
-
-[node name="ObjectSpawner" type="Node2D" parent="."]
-script = ExtResource("14_swx5u")
