@@ -45,11 +45,12 @@ func _on_activate_zone_body_exited(body: Node2D) -> void:
 			tether_body = null
 
 
-func _on_vent_event_started(_vent_ref) -> void:
-	is_started = true
-	harvester_light.energy = 1
-	vent_timer.start(vent_duration)
-	handle_boundary(false)
+func _on_vent_event_started(vent_ref) -> void:
+	if vent_ref == self:
+		is_started = true
+		harvester_light.energy = 1
+		vent_timer.start(vent_duration)
+		handle_boundary(false)
 
 
 func _on_vent_timer_timeout() -> void:
