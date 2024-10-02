@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctqqv0b6wkpt5"]
+[gd_scene load_steps=5 format=3 uid="uid://ctqqv0b6wkpt5"]
 
+[ext_resource type="Script" path="res://Scripts/test_scene.gd" id="1_0c0ng"]
 [ext_resource type="Script" path="res://Scripts/object_spawner.gd" id="1_yxupc"]
 [ext_resource type="Script" path="res://Scripts/map_manager.gd" id="2_a4bvd"]
 [ext_resource type="TileSet" uid="uid://bittc6rbhu1ca" path="res://temp_tileset.tres" id="3_dsx72"]
 
 [node name="TestScene" type="Node2D"]
+script = ExtResource("1_0c0ng")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.15, 0.15)
+zoom = Vector2(0.11, 0.11)
 
 [node name="ObjectSpawner" type="Node2D" parent="."]
 script = ExtResource("1_yxupc")

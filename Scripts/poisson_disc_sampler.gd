@@ -10,9 +10,9 @@ static func generate_poisson(tile_map: TileMapLayer, min_distance: float, resamp
 	
 	var tile_offsets = Vector2i(abs(rect_bounds.position.x), abs(rect_bounds.position.y))
 	var initial_cell = tile_map.get_used_cells().pick_random()
-	var initial_point = Vector2(initial_cell.x + tile_offsets.x * 128, initial_cell.y + tile_offsets.y * 128)
+	var initial_point = Vector2((initial_cell.x + tile_offsets.x) * 128, (initial_cell.y + tile_offsets.y) * 128)
 	process_list.push_back(initial_point)
-	sample_list.push_back(initial_point)
+	sample_list.push_back(Vector2(initial_point.x - (tile_offsets.x * 128), initial_point.y - (tile_offsets.y * 128)))
 	grid2D.set_point(image_to_grid(initial_point, cell_size), initial_point)
 	
 	while !process_list.is_empty():

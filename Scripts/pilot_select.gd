@@ -17,5 +17,5 @@ func _on_pilot_3_pressed() -> void:
 
 func start_game(pilot_index: int):
 	GameGlobals.current_pilot = load(pilots[pilot_index])
-	GameGlobals.run_seed = 1000 + (1000 * (randi() % 10000))
+	GameGlobals.set_seed()
 	get_tree().change_scene_to_file(game_scene)

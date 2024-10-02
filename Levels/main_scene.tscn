@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctocgcgtxcg3c"]
+[gd_scene load_steps=20 format=3 uid="uid://ctocgcgtxcg3c"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_i2iab"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_3yk88"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="10_bd4lk"]
 [ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="11_tybnx"]
 [ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="12_k3wak"]
+[ext_resource type="PackedScene" uid="uid://bxmoyjkamfkby" path="res://evacuation_point.tscn" id="14_km2sg"]
 [ext_resource type="Script" path="res://Scripts/object_spawner.gd" id="14_swx5u"]
 
 [sub_resource type="Resource" id="Resource_nv8ax"]
@@ -170,3 +171,6 @@ shape = SubResource("CircleShape2D_f04b6")
 [node name="PointLight2D" type="PointLight2D" parent="TestEnemy"]
 position = Vector2(7, -13)
 texture = SubResource("GradientTexture2D_e585v")
+
+[node name="EvacuationPoint" parent="." instance=ExtResource("14_km2sg")]
+position = Vector2(0, 157)

@@ -50,11 +50,10 @@ func _ready() -> void:
 
 	display_layer.position.x = -tile_size * tile_scale / 2
 	display_layer.position.y = -tile_size * tile_scale / 2
-	seed(GameGlobals.run_seed)
+	#seed(GameGlobals.run_seed)
 	generate_map()
 	
-	for coord in tile_layer.get_used_cells():
-		set_display_tile(coord)
+	draw_display_map()
 	
 	GlobalSignal.tilemap_generated.emit(self)
 
@@ -63,6 +62,11 @@ func generate_map() -> void:
 	walk()
 	clear_radius(Vector2i.ZERO, starting_area_radius)
 	clean_inside()
+	
+
+func draw_display_map() -> void:
+	for coord in tile_layer.get_used_cells():
+		set_display_tile(coord)
 	
 
 func walk() -> void:

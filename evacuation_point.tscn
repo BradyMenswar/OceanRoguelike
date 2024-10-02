@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxmoyjkamfkby"]
+
+[ext_resource type="Script" path="res://Scripts/evacuation_point.gd" id="1_kiqqh"]
+[ext_resource type="Texture2D" uid="uid://6sw1qv1bq7pe" path="res://Sprites/Weapon.png" id="2_2isjh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yshsb"]
+radius = 34.3657
+
+[node name="EvacuationPoint" type="Area2D"]
+script = ExtResource("1_kiqqh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yshsb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2isjh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -9,7 +9,6 @@ var minimap_scene := preload("res://minimap.tscn")
 var default_minimap_size = Vector2(256, 256)
 var expanded_minimap_size = Vector2(512, 512)
 var max_energy: float
-var essence_total: float = 0.0
 
 func _ready() -> void:
 	GlobalSignal.energy_changed.connect(_on_energy_changed)
@@ -29,8 +28,7 @@ func _on_energy_changed(current_amount: float, player_max_energy: float) -> void
 		%EnergyBarUI.max_value = max_energy
 
 
-func _on_vent_event_completed(essence_amount) -> void:
-	essence_total += essence_amount
+func _on_vent_event_completed(_essence_amount) -> void:
 	update_essence_ui()
 	
 
@@ -50,4 +48,4 @@ func _on_minimap_expand_toggled(minimap_expanded: bool) -> void:
 
 
 func update_essence_ui() -> void:
-	essence_ui.text = "Total Essence: " + str(essence_total) + "/" + str(GameGlobals.STAGE_ONE_ESSENCE_REQUIREMENT)
+	essence_ui.text = "Current Essence: " + str(GameGlobals.current_essence) + "/" + str(GameGlobals.essence_requirements[GameGlobals.current_stage])
