@@ -33,6 +33,7 @@ position = Vector2(244, 183)
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_wv2iq")
+base_speed = 400.0
 depleted_multiplier = 0.6
 energy_component = NodePath("EnergyComponent")
 

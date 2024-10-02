@@ -16,14 +16,16 @@ var player
 var map_manager: MapManager
 var minimap_size = 256
 var tile_size = 256 * 0.5
-
+var offset = 1
+var square_with_offset
+	
 func _ready() -> void:
 	camera.zoom = default_zoom
-	initialize_fog()
 	set_tile_map()
+	calculate_zoom()
+	initialize_fog()
 	GlobalSignal.tilemap_changed.connect(_on_tilemap_changed)
 	GlobalSignal.player_spawned.connect(_on_player_spawned)
-	calculate_zoom()
 
 func _process(_delta: float) -> void:
 	if player:
@@ -42,14 +44,19 @@ func _input(event: InputEvent) -> void:
 			fog_tiles.hide()
 		debug_map_revealed = !debug_map_revealed
 
+
 func calculate_zoom() -> void:
 	var tile_map_rect: Rect2i = map_manager.tile_layer.get_used_rect()
 	var larger_scale = max(tile_map_rect.size.x, tile_map_rect.size.y)
-	expanded_zoom = Vector2(minimap_size / (float(larger_scale) * tile_size), minimap_size / (float(larger_scale) * tile_size))
-	camera.limit_left = tile_map_rect.position.x * tile_size
-	camera.limit_right = (tile_map_rect.position.x + tile_map_rect.size.x) * tile_size - 256
-	camera.limit_top = tile_map_rect.position.y * tile_size
-	camera.limit_bottom = (tile_map_rect.position.y + tile_map_rect.size.y) * tile_size - 256
+	var square_tile_map_rect = Rect2i(tile_map_rect.position, Vector2i(larger_scale, larger_scale))
+	square_with_offset = Rect2i(square_tile_map_rect.position, Vector2i(square_tile_map_rect.size.x + offset, square_tile_map_rect.size.y + offset))
+	var scaled_square_with_offset := Rect2i(square_with_offset.position * tile_size, square_with_offset.size * tile_size)
+	
+	expanded_zoom = Vector2(minimap_size / float(scaled_square_with_offset.size.x), minimap_size / float(scaled_square_with_offset.size.y))
+	camera.limit_left = scaled_square_with_offset.position.x
+	camera.limit_right = scaled_square_with_offset.end.x
+	camera.limit_top = scaled_square_with_offset.position.y
+	camera.limit_bottom = scaled_square_with_offset.end.y
 
 
 func update_fog() -> void:
@@ -77,12 +84,10 @@ func inside_circle(center: Vector2i, tile_coords: Vector2i, radius: float) -> bo
 func initialize_fog() -> void:
 	# need to reorient the fog to fit the entire displayed map
 	var tile_scale = map_manager.tile_scale
-	var map_rect: Rect2i = map_manager.tile_layer.get_used_rect()
-	var larger_scale = max(map_rect.size.x, map_rect.size.y)
-	
-	for row in range(map_rect.position.y, map_rect.position.y + larger_scale):
-		for col in range(map_rect.position.x, map_rect.position.x + larger_scale):
-			fog_tiles.set_cell(Vector2i(col, row), 0, Vector2i(0, 0))
+
+	for x in range(square_with_offset.position.x, square_with_offset.end.x):
+		for y in range(square_with_offset.position.y, square_with_offset.end.y):
+			fog_tiles.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
 			
 	fog_tiles.scale.x = tile_scale
 	fog_tiles.scale.y = tile_scale
@@ -118,5 +123,5 @@ func expand_minimap() -> void:
 func _on_tilemap_changed(map_manager_ref):
 	map_manager = map_manager_ref
 	set_tile_map()
-	initialize_fog()
 	calculate_zoom()
+	initialize_fog()
