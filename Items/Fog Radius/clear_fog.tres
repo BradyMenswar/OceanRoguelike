@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FogRadiusItem" load_steps=3 format=3 uid="uid://bq1kr8w8v4wxo"]
+
+[ext_resource type="Script" path="res://Items/Fog Radius/fog_radius_item.gd" id="1_8gc0g"]
+[ext_resource type="Texture2D" uid="uid://bqvgis3dvyedj" path="res://Sprites/icon.svg" id="2_g5o3m"]
+
+[resource]
+script = ExtResource("1_8gc0g")
+fog_radius = 200.5
+texture = ExtResource("2_g5o3m")
+name = ""
+rarity = 0
+heat_cost = 0.0
+activate_every_stage = true

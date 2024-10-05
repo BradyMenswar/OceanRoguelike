@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MinimapRevealItem" load_steps=3 format=3 uid="uid://33r8jpd1jmtu"]
+
+[ext_resource type="Script" path="res://Items/Minimap Reveal/minimap_reveal_item.gd" id="1_2gfkg"]
+[ext_resource type="Texture2D" uid="uid://bqvgis3dvyedj" path="res://Sprites/icon.svg" id="2_l3gv6"]
+
+[resource]
+script = ExtResource("1_2gfkg")
+reveal_objects = Array[int]([0, 1])
+texture = ExtResource("2_l3gv6")
+name = "Reveal All"
+rarity = 0
+heat_cost = 0.0
+activate_every_stage = true

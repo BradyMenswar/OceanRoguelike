@@ -17,6 +17,7 @@ func _on_tilemap_generated(map_manager_ref: MapManager):
 		var vent_instance = vent_scene.instantiate()
 		vent_instance.global_position = node
 		get_parent().add_child.call_deferred(vent_instance)
+	GlobalSignal.object_positions_generated.emit(vent_nodes, GameGlobals.Objects.Vent)
 	
 	pylon_nodes = PoissonDiscSampler.generate_poisson(map_manager_ref.tile_layer, 2200, 30)
 	for node in pylon_nodes:
@@ -24,7 +25,8 @@ func _on_tilemap_generated(map_manager_ref: MapManager):
 		var pylon_instance = pylon_scene.instantiate()
 		pylon_instance.global_position = node
 		get_parent().add_child.call_deferred(pylon_instance)
-
+	GlobalSignal.object_positions_generated.emit(pylon_nodes, GameGlobals.Objects.Pylon)
+	
 	map_manager_ref.draw_display_map()
 	GlobalSignal.tilemap_changed.emit(map_manager_ref)
 

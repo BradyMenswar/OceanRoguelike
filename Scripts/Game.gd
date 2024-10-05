@@ -7,6 +7,7 @@ func _ready() -> void:
 	var player_instance: Node = player.instantiate()
 	add_child(player_instance)
 	GlobalSignal.player_spawned.emit(player_instance)
+	GlobalSignal.stage_entered.emit(GameGlobals.current_stage)
 	GlobalSignal.stage_completed.connect(_on_stage_completed)
 	
 func _on_stage_completed():

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://t0bb5ekd3ykw"]
+
+[ext_resource type="Script" path="res://Scripts/attack_component.gd" id="1_ntg6c"]
+[ext_resource type="Texture2D" uid="uid://6sw1qv1bq7pe" path="res://Sprites/Weapon.png" id="2_e0ve2"]
+
+[node name="AttackComponent" type="Node2D"]
+script = ExtResource("1_ntg6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -18)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_e0ve2")
+
+[node name="BarrelPlacement" type="Marker2D" parent="."]
+position = Vector2(0, -46)
+
+[node name="BulletContainer" type="Node" parent="."]
+
+[node name="RefireTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="RefireTimer" to="." method="_on_refire_timer_timeout"]

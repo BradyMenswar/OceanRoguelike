@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2uli4nrvwudr"]
+[gd_scene load_steps=14 format=3 uid="uid://d2uli4nrvwudr"]
 
 [ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_wv2iq"]
 [ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="2_fk6na"]
@@ -8,8 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/light_manager.gd" id="6_0uwx3"]
 [ext_resource type="Script" path="res://Scripts/aim.gd" id="7_5tehi"]
 [ext_resource type="Texture2D" uid="uid://w5d3ox2w4874" path="res://Sprites/directional_cone_gradient.png" id="8_0v0xt"]
-[ext_resource type="Script" path="res://Scripts/attack_component.gd" id="9_gxlrw"]
-[ext_resource type="Texture2D" uid="uid://6sw1qv1bq7pe" path="res://Sprites/Weapon.png" id="11_wt7wj"]
+[ext_resource type="PackedScene" uid="uid://t0bb5ekd3ykw" path="res://attack_component.tscn" id="9_hcqu8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4ys"]
 radius = 40.0125
@@ -87,19 +86,4 @@ shadow_item_cull_mask = 2
 texture = ExtResource("8_0v0xt")
 texture_scale = 1.56
 
-[node name="AttackComponent" type="Node2D" parent="Swivel"]
-script = ExtResource("9_gxlrw")
-
-[node name="Sprite2D" type="Sprite2D" parent="Swivel/AttackComponent"]
-position = Vector2(0, -18)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("11_wt7wj")
-
-[node name="BarrelPlacement" type="Marker2D" parent="Swivel/AttackComponent"]
-position = Vector2(0, -46)
-
-[node name="BulletContainer" type="Node" parent="Swivel/AttackComponent"]
-
-[node name="RefireTimer" type="Timer" parent="Swivel/AttackComponent"]
-
-[connection signal="timeout" from="Swivel/AttackComponent/RefireTimer" to="Swivel/AttackComponent" method="_on_refire_timer_timeout"]
+[node name="AttackComponent" parent="Swivel" instance=ExtResource("9_hcqu8")]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MinimapRevealItem" load_steps=3 format=3 uid="uid://d2imhgv2bm0ys"]
+
+[ext_resource type="Script" path="res://Items/Minimap Reveal/minimap_reveal_item.gd" id="1_clgwj"]
+[ext_resource type="Texture2D" uid="uid://bqvgis3dvyedj" path="res://Sprites/icon.svg" id="2_0c75v"]
+
+[resource]
+script = ExtResource("1_clgwj")
+reveal_objects = Array[int]([1])
+texture = ExtResource("2_0c75v")
+name = "Reveal Pylons"
+rarity = 0
+heat_cost = 0.0
+activate_every_stage = true

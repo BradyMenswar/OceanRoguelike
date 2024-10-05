@@ -10,9 +10,11 @@ var current_depleted_multiplier: float = 1
 var nearest_vent
 
 func _ready() -> void:
+	apply_stats()
 	energy_component.energy_depleted.connect(_on_energy_depleted)
 	energy_component.energy_restored.connect(_on_energy_restored)
 	GlobalSignal.vent_event_completed.connect(_on_vent_event_completed)
+	GlobalSignal.stats_changed.connect(_on_stats_changed)
 
 
 func _input(event: InputEvent) -> void:
@@ -28,6 +30,14 @@ func _physics_process(_delta) -> void:
 	velocity.y = move_toward(velocity.y, base_speed * current_depleted_multiplier * input_direction.y, acceleration)
 	move_and_slide()
 	
+	
+func apply_stats() -> void:
+	base_speed = GameGlobals.current_stats[GameGlobals.Stats.MoveSpeed]
+	
+	
+func _on_stats_changed() -> void:
+	apply_stats()
+
 
 func _on_energy_depleted() -> void:
 	current_depleted_multiplier = depleted_multiplier

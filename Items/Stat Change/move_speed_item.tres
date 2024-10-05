@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatItem" load_steps=3 format=3 uid="uid://edno1dr047gj"]
+
+[ext_resource type="Script" path="res://Items/Stat Change/stat_item.gd" id="1_mwiob"]
+[ext_resource type="Texture2D" uid="uid://bqvgis3dvyedj" path="res://Sprites/icon.svg" id="2_cpqbo"]
+
+[resource]
+script = ExtResource("1_mwiob")
+increased_stats = [{
+"amount": 100.0,
+"stat": 0
+}]
+texture = ExtResource("2_cpqbo")
+name = "Move Speed"
+rarity = 0
+heat_cost = 1.0

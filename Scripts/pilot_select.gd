@@ -17,5 +17,8 @@ func _on_pilot_3_pressed() -> void:
 
 func start_game(pilot_index: int):
 	GameGlobals.current_pilot = load(pilots[pilot_index])
+	for item in GameGlobals.current_pilot.starting_items:
+		GameGlobals.equip_item(item)
+	GameGlobals.set_current_stats(GameGlobals.current_pilot.base_stats)
 	GameGlobals.set_seed()
 	get_tree().change_scene_to_file(game_scene)

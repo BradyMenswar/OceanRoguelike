@@ -6,3 +6,4 @@
 [resource]
 script = ExtResource("1_wsftn")
 starting_weapon = ExtResource("2_gdljk")
+base_stats = Array[float]([300.0, 0.0])

@@ -26,6 +26,7 @@ scale = Vector2(0.400001, 0.400001)
 shape = SubResource("CircleShape2D_8775k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -15)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ew2on")

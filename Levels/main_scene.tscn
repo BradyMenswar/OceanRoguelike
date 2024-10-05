@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ctocgcgtxcg3c"]
+[gd_scene load_steps=15 format=3 uid="uid://ctocgcgtxcg3c"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_i2iab"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_3yk88"]
@@ -8,12 +8,10 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_nfdgx"]
 [ext_resource type="Script" path="res://Scripts/map_manager.gd" id="7_n3g5d"]
 [ext_resource type="TileSet" uid="uid://bittc6rbhu1ca" path="res://temp_tileset.tres" id="8_bev71"]
-[ext_resource type="PackedScene" uid="uid://ci0vyxgta78q8" path="res://pylon.tscn" id="9_okhg7"]
-[ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="10_bd4lk"]
-[ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="11_tybnx"]
-[ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="12_k3wak"]
+[ext_resource type="Resource" uid="uid://bq1kr8w8v4wxo" path="res://Items/Fog Radius/clear_fog.tres" id="12_07koh"]
 [ext_resource type="PackedScene" uid="uid://bxmoyjkamfkby" path="res://evacuation_point.tscn" id="14_km2sg"]
 [ext_resource type="Script" path="res://Scripts/object_spawner.gd" id="14_swx5u"]
+[ext_resource type="PackedScene" uid="uid://ppbewa3h5r8c" path="res://item_pickup.tscn" id="15_h0mj1"]
 
 [sub_resource type="Resource" id="Resource_nv8ax"]
 script = ExtResource("6_nfdgx")
@@ -26,22 +24,6 @@ script = ExtResource("6_nfdgx")
 duration = 1.0
 transition = 0
 ease = 2
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_f04b6"]
-radius = 40.0125
-
-[sub_resource type="Gradient" id="Gradient_aj3yo"]
-offsets = PackedFloat32Array(0, 0.222222, 0.517361, 0.836806, 0.930556)
-colors = PackedColorArray(0.151855, 0.099642, 0.0375544, 1, 0.0602467, 0.0379905, 0.0125187, 1, 0.0123328, 0.0077768, 0.00256263, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_e585v"]
-resource_local_to_scene = true
-gradient = SubResource("Gradient_aj3yo")
-width = 150
-height = 150
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.102564, 0.196581)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_i2iab")
@@ -150,27 +132,9 @@ rendering_quadrant_size = 2
 [node name="DisplayTiles" type="TileMapLayer" parent="MapManager"]
 tile_set = ExtResource("8_bev71")
 
-[node name="Pylon" parent="." instance=ExtResource("9_okhg7")]
-
-[node name="TestEnemy" type="Node2D" parent="."]
-position = Vector2(-238, 26)
-
-[node name="Sprite2D" type="Sprite2D" parent="TestEnemy"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_bd4lk")
-
-[node name="HealthComponent" parent="TestEnemy" instance=ExtResource("11_tybnx")]
-max_health = 100.0
-
-[node name="HurtboxComponent" parent="TestEnemy" node_paths=PackedStringArray("health_component") instance=ExtResource("12_k3wak")]
-health_component = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEnemy/HurtboxComponent"]
-shape = SubResource("CircleShape2D_f04b6")
-
-[node name="PointLight2D" type="PointLight2D" parent="TestEnemy"]
-position = Vector2(7, -13)
-texture = SubResource("GradientTexture2D_e585v")
-
 [node name="EvacuationPoint" parent="." instance=ExtResource("14_km2sg")]
 position = Vector2(0, 157)
+
+[node name="ItemPickup" parent="." instance=ExtResource("15_h0mj1")]
+position = Vector2(233, 20)
+item_resource = ExtResource("12_07koh")

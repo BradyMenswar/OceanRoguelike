@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MinimapRevealItem" load_steps=3 format=3 uid="uid://cfhgk8gcpnsfn"]
+
+[ext_resource type="Script" path="res://Items/Minimap Reveal/minimap_reveal_item.gd" id="1_0v5l6"]
+[ext_resource type="Texture2D" uid="uid://bqvgis3dvyedj" path="res://Sprites/icon.svg" id="2_dh0g0"]
+
+[resource]
+script = ExtResource("1_0v5l6")
+reveal_objects = Array[int]([0])
+texture = ExtResource("2_dh0g0")
+name = "Reveal Vents"
+rarity = 0
+heat_cost = 0.0
+activate_every_stage = true

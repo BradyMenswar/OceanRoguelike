@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rtaqxdm08ngs"]
+
+[ext_resource type="Texture2D" uid="uid://b85khvm0i61" path="res://Sprites/vent.png" id="1_k6p7b"]
+
+[node name="VentMinimapSprite" type="Sprite2D"]
+texture = ExtResource("1_k6p7b")
