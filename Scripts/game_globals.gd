@@ -22,6 +22,7 @@ var player_instance
 
 var current_items: Array[BaseItem] = []
 var current_stats: Array[float] = []
+var current_on_hits: Array[BaseItem] = []
 
 func _ready() -> void:
 	GlobalSignal.vent_event_completed.connect(_on_vent_event_completed)
