@@ -1,7 +1,9 @@
 extends Node
 
 @warning_ignore("unused_signal")
-signal energy_changed(energy: float, MAX_ENERGY: float)
+signal reactor_overheated()
+@warning_ignore("unused_signal")
+signal reactor_changed()
 @warning_ignore("unused_signal")
 signal vent_event_started(vent_ref)
 @warning_ignore("unused_signal")

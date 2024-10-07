@@ -7,25 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="5_xdc5d"]
 [ext_resource type="Script" path="res://Scripts/light_manager.gd" id="6_0uwx3"]
 [ext_resource type="Script" path="res://Scripts/aim.gd" id="7_5tehi"]
-[ext_resource type="Texture2D" uid="uid://w5d3ox2w4874" path="res://Sprites/directional_cone_gradient.png" id="8_0v0xt"]
+[ext_resource type="Texture2D" uid="uid://6121u5c3scim" path="res://Sprites/ship_light.svg" id="7_yfi1o"]
+[ext_resource type="Texture2D" uid="uid://cdvcwlhugpge2" path="res://Sprites/test_flashlight.svg" id="8_lint5"]
 [ext_resource type="PackedScene" uid="uid://t0bb5ekd3ykw" path="res://attack_component.tscn" id="9_hcqu8"]
+[ext_resource type="PackedScene" uid="uid://bbde8dobpj1lt" path="res://UI/energy_ui.tscn" id="10_2wkls"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4ys"]
 radius = 40.0125
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bqgty"]
 radius = 36.0139
-
-[sub_resource type="Gradient" id="Gradient_amvpn"]
-offsets = PackedFloat32Array(0, 0.265432, 0.478395, 0.6875, 0.993056)
-colors = PackedColorArray(1, 1, 1, 1, 0.302053, 0.302053, 0.302053, 1, 0.141414, 0.141414, 0.141414, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0khvr"]
-gradient = SubResource("Gradient_amvpn")
-width = 900
-height = 900
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("energy_component") groups=["Player"]]
 position = Vector2(244, 183)
@@ -70,7 +61,7 @@ flashlight_cost = 0.2
 [node name="ShipLight" type="PointLight2D" parent="."]
 shadow_enabled = true
 shadow_item_cull_mask = 2
-texture = SubResource("GradientTexture2D_0khvr")
+texture = ExtResource("7_yfi1o")
 
 [node name="Swivel" type="Node2D" parent="."]
 position = Vector2(-1, -16)
@@ -78,12 +69,22 @@ script = ExtResource("7_5tehi")
 
 [node name="Flashlight" type="PointLight2D" parent="Swivel"]
 unique_name_in_owner = true
+position = Vector2(0.749979, 15.5)
 rotation = -1.57079
 scale = Vector2(1.02202, 0.654889)
 energy = 0.0
 shadow_enabled = true
 shadow_item_cull_mask = 2
-texture = ExtResource("8_0v0xt")
-texture_scale = 1.56
+texture = ExtResource("8_lint5")
+offset = Vector2(512, 0)
 
 [node name="AttackComponent" parent="Swivel" instance=ExtResource("9_hcqu8")]
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+
+[node name="EnergyUI" parent="PlayerHUD" node_paths=PackedStringArray("energy_component") instance=ExtResource("10_2wkls")]
+offset_left = 15.0
+offset_top = 54.0
+offset_right = 245.0
+offset_bottom = 108.0
+energy_component = NodePath("../../EnergyComponent")

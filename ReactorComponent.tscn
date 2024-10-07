@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://biipybnrwbinb"]
+
+[ext_resource type="Script" path="res://Scripts/reactor_component.gd" id="1_nr062"]
+
+[node name="ReactorComponent" type="Node2D"]
+script = ExtResource("1_nr062")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="DecayTimer" type="Timer" parent="."]

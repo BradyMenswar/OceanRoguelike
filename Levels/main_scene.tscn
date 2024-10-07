@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://ctocgcgtxcg3c"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_i2iab"]
-[ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_3yk88"]
+[ext_resource type="Script" path="res://UI/HUD.gd" id="2_3yk88"]
 [ext_resource type="Script" path="res://Scripts/camera_manager.gd" id="3_3t244"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_0inhx"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_h2usa"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_nfdgx"]
 [ext_resource type="Script" path="res://Scripts/map_manager.gd" id="7_n3g5d"]
 [ext_resource type="TileSet" uid="uid://bittc6rbhu1ca" path="res://temp_tileset.tres" id="8_bev71"]
-[ext_resource type="Resource" uid="uid://bq1kr8w8v4wxo" path="res://Items/Fog Radius/clear_fog.tres" id="12_07koh"]
+[ext_resource type="Resource" uid="uid://33r8jpd1jmtu" path="res://Items/Minimap Reveal/reveal_all.tres" id="12_oko10"]
 [ext_resource type="PackedScene" uid="uid://bxmoyjkamfkby" path="res://evacuation_point.tscn" id="14_km2sg"]
 [ext_resource type="Script" path="res://Scripts/object_spawner.gd" id="14_swx5u"]
 [ext_resource type="PackedScene" uid="uid://ppbewa3h5r8c" path="res://item_pickup.tscn" id="15_h0mj1"]
@@ -45,20 +45,6 @@ grow_horizontal = 2
 text = "Test"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="HUD"]
-offset_left = 29.0
-offset_top = 21.0
-offset_right = 82.0
-offset_bottom = 44.0
-text = "Energy"
-
-[node name="EnergyBarUI" type="ProgressBar" parent="HUD"]
-unique_name_in_owner = true
-offset_left = 29.0
-offset_top = 50.0
-offset_right = 284.0
-offset_bottom = 77.0
-
 [node name="Seed" type="Label" parent="HUD"]
 offset_left = 29.0
 offset_top = -1.0
@@ -82,8 +68,6 @@ handle_input_locally = false
 size = Vector2i(256, 256)
 render_target_update_mode = 4
 
-[node name="Node" type="Node" parent="HUD"]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 2
 
@@ -103,6 +87,7 @@ follow_mode = 1
 tween_resource = SubResource("Resource_vbvwo")
 
 [node name="AreaLight" type="DirectionalLight2D" parent="."]
+visible = false
 energy = 0.05
 
 [node name="Darkness" type="CanvasModulate" parent="."]
@@ -137,4 +122,4 @@ position = Vector2(0, 157)
 
 [node name="ItemPickup" parent="." instance=ExtResource("15_h0mj1")]
 position = Vector2(233, 20)
-item_resource = ExtResource("12_07koh")
+item_resource = ExtResource("12_oko10")

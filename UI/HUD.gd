@@ -8,24 +8,13 @@ extends CanvasLayer
 var minimap_scene := preload("res://minimap.tscn")
 var default_minimap_size = Vector2(256, 256)
 var expanded_minimap_size = Vector2(512, 512)
-var max_energy: float
 
 func _ready() -> void:
-	GlobalSignal.energy_changed.connect(_on_energy_changed)
 	GlobalSignal.vent_event_completed.connect(_on_vent_event_completed)
 	GlobalSignal.tilemap_generated.connect(_on_tilemap_generated)
 	GlobalSignal.minimap_expand_toggled.connect(_on_minimap_expand_toggled)
 	update_essence_ui()
-	%EnergyBarUI.max_value = max_energy
-	%EnergyBarUI.value = %EnergyBarUI.max_value
 	seed_text.text = "Seed: " + str(GameGlobals.run_seed)
-
-
-func _on_energy_changed(current_amount: float, player_max_energy: float) -> void:
-	%EnergyBarUI.value = current_amount
-	if max_energy != player_max_energy:
-		max_energy = player_max_energy
-		%EnergyBarUI.max_value = max_energy
 
 
 func _on_vent_event_completed(_essence_amount) -> void:

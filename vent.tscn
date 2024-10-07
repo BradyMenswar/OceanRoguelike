@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bj06qa6qefrol"]
+[gd_scene load_steps=11 format=3 uid="uid://bj06qa6qefrol"]
 
 [ext_resource type="Script" path="res://Scripts/vent.gd" id="1_u564i"]
 [ext_resource type="Texture2D" uid="uid://dy4elflx6nhp0" path="res://Sprites/key.png" id="2_x0bdy"]
 [ext_resource type="Texture2D" uid="uid://b85khvm0i61" path="res://Sprites/vent.png" id="3_g3wcj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gtk6r"]
+light_mode = 2
 
 [sub_resource type="SystemFont" id="SystemFont_5pals"]
 font_names = PackedStringArray("Segoe UI")
@@ -34,6 +37,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Vent" type="Node2D"]
+material = SubResource("CanvasItemMaterial_gtk6r")
 script = ExtResource("1_u564i")
 
 [node name="KeyPrompt" type="Sprite2D" parent="."]
@@ -87,6 +91,7 @@ texture = SubResource("GradientTexture2D_nqjyn")
 
 [node name="VentLight" type="PointLight2D" parent="."]
 color = Color(0.991725, 0.553767, 3.85046e-07, 1)
+energy = 0.04
 shadow_enabled = true
 shadow_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_v3046")

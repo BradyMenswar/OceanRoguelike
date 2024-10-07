@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbde8dobpj1lt"]
+
+[ext_resource type="Script" path="res://UI/energy_ui.gd" id="1_vrmqk"]
+
+[node name="EnergyUI" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vrmqk")
+
+[node name="EnergyLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Energy"
+
+[node name="EnergyMeter" type="ProgressBar" parent="."]
+layout_mode = 2

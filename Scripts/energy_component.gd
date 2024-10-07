@@ -3,6 +3,7 @@ class_name EnergyComponent
 
 signal energy_depleted
 signal energy_restored
+signal energy_changed(energy: float, max_energy: float)
 
 @export var max_energy: float = 10.0
 var energy: float
@@ -15,7 +16,7 @@ func use(amount: float) -> void:
 	energy -= amount
 	if energy <= 0:
 		energy_depleted.emit()
-	GlobalSignal.energy_changed.emit(energy, max_energy)
+	energy_changed.emit(energy, max_energy)
 
 
 func check(amount: float) -> bool:
@@ -30,4 +31,4 @@ func charge(amount: float):
 	energy += amount;
 	if energy > max_energy:
 		energy = max_energy
-	GlobalSignal.energy_changed.emit(energy, max_energy)
+	energy_changed.emit(energy, max_energy)

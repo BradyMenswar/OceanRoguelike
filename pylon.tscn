@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci0vyxgta78q8"]
+[gd_scene load_steps=7 format=3 uid="uid://ci0vyxgta78q8"]
 
 [ext_resource type="Script" path="res://Scripts/pylon.gd" id="1_i0g1n"]
 [ext_resource type="Texture2D" uid="uid://bu0i7ngj5pjpg" path="res://Sprites/pylon.png" id="2_ew2on"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8775k"]
 radius = 182.654
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ccrh6"]
 
 [sub_resource type="Gradient" id="Gradient_s2o42"]
 offsets = PackedFloat32Array(0, 0.265432, 0.478395, 0.6875, 0.993056)
@@ -27,12 +29,15 @@ shape = SubResource("CircleShape2D_8775k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_ccrh6")
 position = Vector2(0, -15)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ew2on")
 
 [node name="VentLight" type="PointLight2D" parent="."]
+visible = false
 color = Color(0.158169, 0.754165, 0.895811, 1)
+energy = 0.04
 shadow_enabled = true
 shadow_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_aib5q")
