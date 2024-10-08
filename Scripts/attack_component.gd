@@ -3,36 +3,50 @@ extends Node2D
 @onready var refire_timer = $RefireTimer
 @onready var bullet_container = $BulletContainer
 @onready var barrel_placement = $BarrelPlacement
+@export var reactor_component: ReactorComponent
 
 var weapon_resource: Weapon
 
 var bullet_scene = preload("res://bullet.tscn")
-var can_shoot: bool = true
+var refire_ready: bool = true
+var is_overheated: bool = false
 var is_shooting: bool = false
 
-func _init() -> void:
-	weapon_resource = GameGlobals.current_pilot.starting_weapon
+func _ready() -> void:
+	weapon_resource = GameGlobals.current_weapon
+	reactor_component.reactor_overheated.connect(_on_reactor_overheated)
+	reactor_component.reactor_cooled.connect(_on_reactor_cooled)
+
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot") and can_shoot:
+	if event.is_action_pressed("shoot") and refire_ready:
 		is_shooting = true;
 	elif event.is_action_released("shoot"):
 		is_shooting = false;
 
 
 func _process(_delta: float) -> void:
-	if is_shooting and can_shoot and weapon_resource.firing_mode == Weapon.FiringMode.Semi:
+	if is_shooting and refire_ready and  !is_overheated and weapon_resource.firing_mode == Weapon.FiringMode.Semi:
 		shoot()
 		is_shooting = false;
-	elif is_shooting and can_shoot and weapon_resource.firing_mode == Weapon.FiringMode.Auto:
+	elif is_shooting and refire_ready and !is_overheated and weapon_resource.firing_mode == Weapon.FiringMode.Auto:
 		shoot()
 		
 		
 func shoot() -> void:
-	can_shoot = false
+	refire_ready = false
 	for bullet_index in range(weapon_resource.bullet_count):
 		handle_bullet()
+	reactor_component.use(weapon_resource.heat_cost)
 	refire_timer.start(1.0 / weapon_resource.fire_rate)
+
+
+func _on_reactor_overheated() -> void:
+	is_overheated = true
+
+
+func _on_reactor_cooled() -> void:
+	is_overheated = false
 
 
 func handle_bullet() -> void:
@@ -50,4 +64,4 @@ func handle_bullet() -> void:
 	
 	
 func _on_refire_timer_timeout() -> void:
-	can_shoot = true
+	refire_ready = true

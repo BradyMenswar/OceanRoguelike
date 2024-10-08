@@ -20,6 +20,7 @@ var current_essence := 0.0
 
 var player_instance
 
+var current_weapon: Weapon
 var current_items: Array[BaseItem] = []
 var current_stats: Array[float] = []
 var current_on_hits: Array[BaseItem] = []

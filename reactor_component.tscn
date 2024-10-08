@@ -6,5 +6,10 @@
 script = ExtResource("1_nr062")
 
 [node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="DecayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="DecayTimer" to="." method="_on_decay_timer_timeout"]

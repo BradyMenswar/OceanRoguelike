@@ -10,4 +10,5 @@ bullet_count = 1
 firing_mode = 1
 max_range = 600.0
 shot_speed = 700.0
+heat_cost = 5.0
 damage = 6.0

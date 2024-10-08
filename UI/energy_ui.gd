@@ -10,7 +10,6 @@ func _ready() -> void:
 	energy_meter.value = energy_meter.max_value
 
 
-
 func _on_energy_changed(current_amount: float, player_max_energy: float) -> void:
 	energy_meter.value = current_amount
 	if energy_meter.max_value != player_max_energy:

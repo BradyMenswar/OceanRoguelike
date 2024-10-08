@@ -5,14 +5,15 @@ class_name Player
 @export var depleted_multiplier: float
 @export var acceleration: float = 50
 @export var energy_component: EnergyComponent
+@export var reactor_component: ReactorComponent
 
 var current_depleted_multiplier: float = 1
 var nearest_vent
 
 func _ready() -> void:
 	apply_stats()
-	energy_component.energy_depleted.connect(_on_energy_depleted)
-	energy_component.energy_restored.connect(_on_energy_restored)
+	#energy_component.energy_depleted.connect(_on_energy_depleted)
+	#energy_component.energy_restored.connect(_on_energy_restored)
 	GlobalSignal.vent_event_completed.connect(_on_vent_event_completed)
 	GlobalSignal.stats_changed.connect(_on_stats_changed)
 
@@ -39,12 +40,12 @@ func _on_stats_changed() -> void:
 	apply_stats()
 
 
-func _on_energy_depleted() -> void:
-	current_depleted_multiplier = depleted_multiplier
-
-
-func _on_energy_restored() -> void:
-	current_depleted_multiplier = 1
+#func _on_energy_depleted() -> void:
+	#current_depleted_multiplier = depleted_multiplier
+#
+#
+#func _on_energy_restored() -> void:
+	#current_depleted_multiplier = 1
 
 
 func _on_vent_event_completed(_essence_amount) -> void:

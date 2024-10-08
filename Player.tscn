@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_wv2iq"]
 [ext_resource type="Texture2D" uid="uid://d02fo0jl80x0s" path="res://Sprites/temp_character.png" id="2_fk6na"]
 [ext_resource type="PackedScene" uid="uid://dpg55y7xt5tq8" path="res://health_component.tscn" id="3_36cds"]
-[ext_resource type="PackedScene" uid="uid://dq2ek1lpwiqgw" path="res://energy_component.tscn" id="4_glt8y"]
+[ext_resource type="PackedScene" uid="uid://biipybnrwbinb" path="res://reactor_component.tscn" id="4_cdncx"]
 [ext_resource type="PackedScene" uid="uid://boadqlbeyv71i" path="res://hurtbox_component.tscn" id="5_xdc5d"]
 [ext_resource type="Script" path="res://Scripts/light_manager.gd" id="6_0uwx3"]
 [ext_resource type="Script" path="res://Scripts/aim.gd" id="7_5tehi"]
 [ext_resource type="Texture2D" uid="uid://6121u5c3scim" path="res://Sprites/ship_light.svg" id="7_yfi1o"]
 [ext_resource type="Texture2D" uid="uid://cdvcwlhugpge2" path="res://Sprites/test_flashlight.svg" id="8_lint5"]
 [ext_resource type="PackedScene" uid="uid://t0bb5ekd3ykw" path="res://attack_component.tscn" id="9_hcqu8"]
-[ext_resource type="PackedScene" uid="uid://bbde8dobpj1lt" path="res://UI/energy_ui.tscn" id="10_2wkls"]
+[ext_resource type="PackedScene" uid="uid://b7d4h5m6vlubi" path="res://UI/reactor_ui.tscn" id="12_dlsvl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4ys"]
 radius = 40.0125
@@ -18,14 +18,13 @@ radius = 40.0125
 [sub_resource type="CircleShape2D" id="CircleShape2D_bqgty"]
 radius = 36.0139
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("energy_component") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(244, 183)
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_wv2iq")
 base_speed = 400.0
 depleted_multiplier = 0.6
-energy_component = NodePath("EnergyComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -38,7 +37,7 @@ texture = ExtResource("2_fk6na")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_36cds")]
 
-[node name="EnergyComponent" parent="." instance=ExtResource("4_glt8y")]
+[node name="ReactorComponent" parent="." instance=ExtResource("4_cdncx")]
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("5_xdc5d")]
 collision_layer = 1
@@ -48,15 +47,16 @@ collision_mask = 1
 shape = SubResource("CircleShape2D_bqgty")
 debug_color = Color(0.321569, 0.623529, 0, 0.419608)
 
-[node name="LightManager" type="Node2D" parent="." node_paths=PackedStringArray("energy_component")]
+[node name="LightManager" type="Node2D" parent="." node_paths=PackedStringArray("flashlight", "reactor_component")]
 unique_name_in_owner = true
 position = Vector2(-6, 0)
 script = ExtResource("6_0uwx3")
+flashlight = NodePath("../Swivel/Flashlight")
 base_cost = 0.1
-energy_component = NodePath("../EnergyComponent")
+reactor_component = NodePath("../ReactorComponent")
 ship_light_base_intensity = 1.0
 ship_light_depleted_intensity = 0.25
-flashlight_cost = 0.2
+flashlight_cost = 2.0
 
 [node name="ShipLight" type="PointLight2D" parent="."]
 shadow_enabled = true
@@ -68,7 +68,6 @@ position = Vector2(-1, -16)
 script = ExtResource("7_5tehi")
 
 [node name="Flashlight" type="PointLight2D" parent="Swivel"]
-unique_name_in_owner = true
 position = Vector2(0.749979, 15.5)
 rotation = -1.57079
 scale = Vector2(1.02202, 0.654889)
@@ -78,13 +77,10 @@ shadow_item_cull_mask = 2
 texture = ExtResource("8_lint5")
 offset = Vector2(512, 0)
 
-[node name="AttackComponent" parent="Swivel" instance=ExtResource("9_hcqu8")]
+[node name="AttackComponent" parent="Swivel" node_paths=PackedStringArray("reactor_component") instance=ExtResource("9_hcqu8")]
+reactor_component = NodePath("../../ReactorComponent")
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
-[node name="EnergyUI" parent="PlayerHUD" node_paths=PackedStringArray("energy_component") instance=ExtResource("10_2wkls")]
-offset_left = 15.0
-offset_top = 54.0
-offset_right = 245.0
-offset_bottom = 108.0
-energy_component = NodePath("../../EnergyComponent")
+[node name="ReactorUI" parent="PlayerHUD" node_paths=PackedStringArray("reactor_component") instance=ExtResource("12_dlsvl")]
+reactor_component = NodePath("../../ReactorComponent")

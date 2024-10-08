@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7d4h5m6vlubi"]
+
+[ext_resource type="Script" path="res://UI/reactor_ui.gd" id="1_1271r"]
+
+[node name="ReactorUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1271r")
+
+[node name="ReactorMeter" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 71.0
+offset_right = 448.0
+offset_bottom = 98.0
