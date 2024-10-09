@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvpr07rcxcrsb"]
+[gd_scene load_steps=10 format=3 uid="uid://dvpr07rcxcrsb"]
 
 [ext_resource type="Script" path="res://Scripts/shop_scene.gd" id="1_2rkuj"]
+[ext_resource type="Texture2D" uid="uid://dejmbhrqol0eg" path="res://UI/Shop UI/Currency Background.png" id="2_a5rt0"]
+[ext_resource type="Theme" uid="uid://bla3023tfbmad" path="res://UI/ui_theme.tres" id="3_httcl"]
+[ext_resource type="Texture2D" uid="uid://cqi40hp6shwus" path="res://UI/Shop UI/Subsystem Background.png" id="4_la5gt"]
+[ext_resource type="Texture2D" uid="uid://cbnvsfaauv34" path="res://UI/Shop UI/Menu Button Not Selected.png" id="5_eoa8q"]
+[ext_resource type="Texture2D" uid="uid://cttopoc45em5u" path="res://UI/Shop UI/Menu Button Selected.png" id="6_23ppx"]
+[ext_resource type="Texture2D" uid="uid://cygiuogtv2h8i" path="res://UI/Shop UI/Menu Button Hover.png" id="7_i0d4b"]
+[ext_resource type="Texture2D" uid="uid://dtv30lxryqy2" path="res://UI/Shop UI/Next Stage Button.png" id="8_kmr67"]
+[ext_resource type="Texture2D" uid="uid://i0554ak3h6y4" path="res://UI/Shop UI/Next Stage Button Hover.png" id="9_d6lwl"]
 
 [node name="ShopScene" type="Control"]
 layout_mode = 3
@@ -13,20 +21,215 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2rkuj")
 
-[node name="NextLevel" type="Button" parent="."]
+[node name="Currency" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="Currency"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+offset_left = -924.0
+offset_top = -495.0
+offset_right = -620.0
+offset_bottom = -416.0
+texture = ExtResource("2_a5rt0")
+
+[node name="Symbol" type="Label" parent="Currency"]
+layout_mode = 0
+offset_left = -898.0
+offset_top = -488.0
+offset_right = -863.0
+offset_bottom = -440.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "€"
+
+[node name="Amount" type="Label" parent="Currency"]
+offset_left = -851.0
+offset_top = -479.0
+offset_right = -635.0
+offset_bottom = -431.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "250"
+horizontal_alignment = 2
+
+[node name="Subsystems" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="Subsystems"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 0
+offset_left = -922.0
+offset_top = -330.0
+offset_right = -575.0
+offset_bottom = 349.0
+texture = ExtResource("4_la5gt")
+
+[node name="Label" type="Label" parent="Subsystems"]
+layout_mode = 0
+offset_left = -877.0
+offset_top = -280.0
+offset_right = -607.0
+offset_bottom = -236.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "Subsystems"
+
+[node name="ButtonMenu" type="VBoxContainer" parent="Subsystems"]
+layout_mode = 0
+offset_left = -892.0
+offset_top = -149.0
+offset_right = -611.0
+offset_bottom = 258.0
+theme_override_constants/separation = 25
+
+[node name="WeaponsButton" type="TextureButton" parent="Subsystems/ButtonMenu"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("5_eoa8q")
+texture_pressed = ExtResource("6_23ppx")
+texture_hover = ExtResource("7_i0d4b")
+
+[node name="Label" type="Label" parent="Subsystems/ButtonMenu/WeaponsButton"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 157.0
+offset_bottom = 40.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Weapons"
+
+[node name="HullButton" type="TextureButton" parent="Subsystems/ButtonMenu"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("5_eoa8q")
+texture_pressed = ExtResource("6_23ppx")
+texture_hover = ExtResource("7_i0d4b")
+
+[node name="Label" type="Label" parent="Subsystems/ButtonMenu/HullButton"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 157.0
+offset_bottom = 40.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Hull"
+
+[node name="MobilityButton" type="TextureButton" parent="Subsystems/ButtonMenu"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("5_eoa8q")
+texture_pressed = ExtResource("6_23ppx")
+texture_hover = ExtResource("7_i0d4b")
+
+[node name="Label" type="Label" parent="Subsystems/ButtonMenu/MobilityButton"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 157.0
+offset_bottom = 40.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Mobility"
+
+[node name="LightingButton" type="TextureButton" parent="Subsystems/ButtonMenu"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("5_eoa8q")
+texture_pressed = ExtResource("6_23ppx")
+texture_hover = ExtResource("7_i0d4b")
+
+[node name="Label" type="Label" parent="Subsystems/ButtonMenu/LightingButton"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 157.0
+offset_bottom = 40.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Lighting
+"
+
+[node name="ReactorButton" type="TextureButton" parent="Subsystems/ButtonMenu"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("5_eoa8q")
+texture_pressed = ExtResource("6_23ppx")
+texture_hover = ExtResource("7_i0d4b")
+
+[node name="Label" type="Label" parent="Subsystems/ButtonMenu/ReactorButton"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 157.0
+offset_bottom = 40.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Reactor"
+
+[node name="AugmentButton" type="TextureButton" parent="Subsystems/ButtonMenu"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("5_eoa8q")
+texture_pressed = ExtResource("6_23ppx")
+texture_hover = ExtResource("7_i0d4b")
+
+[node name="Label" type="Label" parent="Subsystems/ButtonMenu/AugmentButton"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 157.0
+offset_bottom = 40.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Augments"
+
+[node name="NextLevelButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -108.0
-offset_top = -32.5
-offset_right = 108.0
-offset_bottom = 32.5
+offset_left = 490.0
+offset_top = 378.0
+offset_right = 932.0
+offset_bottom = 513.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 41
-text = "Next Level"
+texture_normal = ExtResource("8_kmr67")
+texture_hover = ExtResource("9_d6lwl")
 
-[connection signal="pressed" from="NextLevel" to="." method="_on_next_level_pressed"]
+[node name="Label" type="Label" parent="NextLevelButton"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 53.0
+offset_right = 390.0
+offset_bottom = 97.0
+theme = ExtResource("3_httcl")
+theme_override_colors/font_color = Color(0.376471, 0.811765, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "Deploy Again"
+
+[connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_pressed"]
